@@ -1,5 +1,6 @@
 // PSEUDOCODE AREA: //
-
+//take an input value and store value (title names, genre, year)
+//make an api call based on user input 
 
 
 
