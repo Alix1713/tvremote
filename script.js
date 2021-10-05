@@ -106,13 +106,15 @@ $("#movieBtn").on("click", function(event){
     movieSearch(movieInput);
 });
 
+
 function movieSearch (moviename){
     var movieApi = queryURL + moviename + queryKey;
+
 
     $.ajax({
         url: movieApi,
         method: "GET"
-    }).then(function(response){
+    }).then(function (response) {
         console.log(response);
 
     $(".movieOne").empty();
