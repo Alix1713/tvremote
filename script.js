@@ -24,7 +24,7 @@ var queryKey = "&apikey=21754fe3"
 function tmdb() {
     var apiKey = "e57e846268be194f276bcd176242c9a4";
     var user_input = 'Horror';
-    // var movieUrl = "https://api.themoviedb.org/3/movie/464052?api_key=" + apiKey + "&language=en-US";
+    // var movieUrl = "https://api.themoviedb.org/3/movie/464052?api_key=" + apiKey + "&language=en-US"; 
     // var movieUrl = "https://api.themoviedb.org/3/genre/movie?api_key=e57e846268be194f276bcd176242c9a4&language=en-US&query=" + user_input +"&page=1&include_adult=false"
     var movieUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=e57e846268be194f276bcd176242c9a4&language=en-US"
     $.ajax({
