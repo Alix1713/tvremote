@@ -16,7 +16,8 @@
 
 
 
-
+var queryURL = "http://www.omdbapi.com/?t="
+var queryKey = "&apikey=21754fe3"
 
 
 //Daniel's Lines //////////////////////////////////////////////////////////////
@@ -85,13 +86,13 @@ $("#movieBtn").on("click", function(event){
     event.preventDefault();
     //grabbing user input
     var movieInput = $("#mySearch").val();
-    var textContent = $(this).siblings("#mySearch").val();
+    //var textContent = $(this).siblings("#mySearch").val();
     
     movieSearch(movieInput);
 });
 
 function movieSearch (moviename){
-    var movieApi = "https://api.themoviedb.org/3/search/movie/" + moviename + "?api_key=e541cc912b23e446603ad63761519a5e&language=en-US&page=1&include_adult=false";
+    var movieApi = queryURL + moviename + queryKey;
 
     $.ajax({
         url: movieApi,
@@ -100,6 +101,7 @@ function movieSearch (moviename){
         console.log(response);
     })
 }
+
 
 
 
