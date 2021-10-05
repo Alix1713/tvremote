@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+<!--header theater scroll-->
 
 <body>
     <!-- Header -->
@@ -21,7 +25,7 @@
             </div>
         </div>
     </header>
-    <div class="w3-center">
+    <div class="w3-center" id="moviescroll">
         <h2>Movie Suggestions</h2>
         <p>Use containers to create headers, sections and footers.</p>
     </div>
@@ -51,11 +55,16 @@
                 <p>Modal footer</p>
             </footer>
         </div>
+
+        <footer class="w3-container w3-theme-l1">
+            <p>Modal footer</p>
+        </footer>
     </div>
-<!--Gave line 54, 65, 76 class of movieOne to see if I can append generated elements-->
+    </div>
+    <!--Gave line 54, 65, 76 class of movieOne to see if I can append generated elements-->
     <div class="w3-row-padding w3-center w3-margin-top">
-        <div class="w3-third">
-            <div class="w3-card w3-container movieOne" style="min-height:460px">
+        <div class="w3-third" id="bg-img">
+            <div class="w3-card w3-container movieOne" style="height:660px">
                 <h3>Responsive</h3><br>
                 <i class="fa fa-desktop w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
                 <p>Built-in responsiveness</p>
@@ -65,8 +74,8 @@
             </div>
         </div>
 
-        <div class="w3-third">
-            <div class="w3-card w3-container movieOne" style="min-height:460px">
+        <div class="w3-third" id="bg-img">
+            <div class="w3-card w3-container movieOne" style="min-height:660px">
                 <h3>Standard CSS</h3><br>
                 <i class="fa fa-css3 w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
                 <p>Standard CSS only</p>
@@ -76,8 +85,8 @@
             </div>
         </div>
 
-        <div class="w3-third">
-            <div class="w3-card w3-container movieOne" style="min-height:460px">
+        <div class="w3-third" id="bg-img">
+            <div class="w3-card w3-container movieOne" style="min-height:660px">
                 <h3>Design</h3><br>
                 <i class="fa fa-diamond w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
                 <p>Paper like design</p>
@@ -87,60 +96,7 @@
             </div>
         </div>
     </div>
-    <div class="w3-row-padding">
 
-        <div class="w3-half">
-            <div class="w3-card white">
-                <div class="w3-container w3-indigo">
-                    <h3>Theme Indigo</h3>
-                </div>
-                <div class="w3-container">
-                    <h3 class="w3-text-indigo">Movies 2014</h3>
-                </div>
-                <ul class="w3-ul w3-border-top">
-                    <li>
-                        <h3>Frozen</h3>
-                        <p>The response to the animations was ridiculous</p>
-                    </li>
-                    <li>
-                        <h3>The Fault in Our Stars</h3>
-                        <p>Touching, gripping and genuinely well made</p>
-                    </li>
-                    <li>
-                        <h3>The Avengers</h3>
-                        <p>A huge success for Marvel and Disney</p>
-                    </li>
-                </ul>
-                <div class="w3-container w3-indigo w3-large"><span class="w3-right">Next</span></div>
-            </div>
-        </div>
-
-        <div class="w3-half">
-            <div class="w3-card white">
-                <div class="w3-container w3-theme">
-                    <h3>Theme</h3>
-                </div>
-                <div class="w3-container">
-                    <h3 class="w3-text-theme">Movies 2014</h3>
-                </div>
-                <ul class="w3-ul w3-border-top">
-                    <li>
-                        <h3>Frozen</h3>
-                        <p>The response to the animations was ridiculous</p>
-                    </li>
-                    <li>
-                        <h3>The Fault in Our Stars</h3>
-                        <p>Touching, gripping and genuinely well made</p>
-                    </li>
-                    <li>
-                        <h3>The Avengers</h3>
-                        <p>A huge success for Marvel and Disney</p>
-                    </li>
-                </ul>
-                <div class="w3-container w3-theme w3-large"><span class="w3-right">Next</span></div>
-            </div>
-        </div>
-    </div>
     <h2 class="w3-center">centered text</h2>
     <div class="w3-center">
         <br>
@@ -165,7 +121,7 @@
     <!--run scripts below here-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
-    
+
 </body>
 
 </html>

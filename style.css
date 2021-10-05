@@ -1,0 +1,25 @@
+#bg-img
+   {
+    /* The image used */
+    background-image: url("poster.jpg");
+  color: ivory;
+  background-size: cover;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  #moviescroll
+     {
+    background-image: url("pop1.jpg");
+    height: 200px;
+    }
+    
+    #myHeader {
+        background-image: url("scroll.png");
+        background-color: black;
+        font-family: 'Staatliches';
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
+    
+    }
