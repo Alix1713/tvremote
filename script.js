@@ -86,14 +86,14 @@ moviename = "inception";
 
 //Derek's Lines /////////////////////////////////////////////////////////////////
 
-function movieSearch (moviename){
+function movieSearch(moviename) {
 
     var movieApi = movieUrl + moviename + key;
 
     $.ajax({
         url: movieApi,
         method: "GET"
-    }).then(function(response){
+    }).then(function (response) {
         console.log(response);
     })
 }
