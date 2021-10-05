@@ -19,10 +19,6 @@
 
 
 
-var key = "?api_key=e541cc912b23e446603ad63761519a5e";
-var movieUrl = "https://api.themoviedb.org/3/search/";
-moviename = "inception";
-
 //Daniel's Lines //////////////////////////////////////////////////////////////
 
 
@@ -85,10 +81,17 @@ moviename = "inception";
 //////////////////////////////////////////////////////////////////////////////////
 
 //Derek's Lines /////////////////////////////////////////////////////////////////
+$("#movieBtn").on("click", function(event){
+    event.preventDefault();
+    //grabbing user input
+    var movieInput = $("#mySearch").val();
+    var textContent = $(this).siblings("#mySearch").val();
+    
+    movieSearch(movieInput);
+});
 
 function movieSearch (moviename){
-
-    var movieApi = movieUrl + moviename + key;
+    var movieApi = "https://api.themoviedb.org/3/search/movie/" + moviename + "?api_key=e541cc912b23e446603ad63761519a5e&language=en-US&page=1&include_adult=false";
 
     $.ajax({
         url: movieApi,
