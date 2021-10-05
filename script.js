@@ -27,7 +27,8 @@ function genreGenerator() {
     var apiKey = "e57e846268be194f276bcd176242c9a4";
     var user_input = 'Horror';
     // var movieUrl = "https://api.themoviedb.org/3/movie/464052?api_key=" + apiKey + "&language=en-US"; // specific example using movie id 
-    var movieUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=e57e846268be194f276bcd176242c9a4&language=en-US" // list of all genres that they offer 
+    var movieUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=e57e846268be194f276bcd176242c9a4&language=en-US" // list of all genres that they offer
+
     $.ajax({
         url: movieUrl,
         method: "GET"
