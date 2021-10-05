@@ -1,7 +1,7 @@
 // PSEUDOCODE AREA: //
 //take an input value and store value (title names, genre, year)
 //make an api call based on user input 
-
+var twitterKey = "YmkJyoGYpwbFNoXb1N9EP5PRy";
 
 
 
@@ -18,25 +18,66 @@
 
 var queryURL = "http://www.omdbapi.com/?t="
 var queryKey = "&apikey=21754fe3"
+var genreName = []; // variable for genre name
+var genreId = []; // variable for genre Id
+var apiKey = "e57e846268be194f276bcd176242c9a4";
 
 
 //Daniel's Lines //////////////////////////////////////////////////////////////
-function tmdb() {
-    var apiKey = "e57e846268be194f276bcd176242c9a4";
-    var user_input = 'Horror';
-    // var movieUrl = "https://api.themoviedb.org/3/movie/464052?api_key=" + apiKey + "&language=en-US"; 
-    // var movieUrl = "https://api.themoviedb.org/3/genre/movie?api_key=e57e846268be194f276bcd176242c9a4&language=en-US&query=" + user_input +"&page=1&include_adult=false"
-    var movieUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=e57e846268be194f276bcd176242c9a4&language=en-US"
+
+// this function generates all the possible genre name 
+// and adds the two values to two separate lists
+function genreGenerator() {
+    // var movieUrl = "https://api.themoviedb.org/3/movie/464052?api_key=" + apiKey + "&language=en-US"; // specific example using movie id 
+    var movieUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=e57e846268be194f276bcd176242c9a4&language=en-US" // list of all genres that they offer
+
     $.ajax({
         url: movieUrl,
         method: "GET"
     }).then(function (data) {
-        console.log(data);
+        genre = data.genres;
+        console.log(genre);
+        for (let i = 0; i < genre.length; i++) {
+            genreId.push(genre[i].id);
+            genreName.push(genre[i].name);
+        }
+
     })
     
 }
 
-tmdb();
+genreGenerator();
+
+function movieSearch(userInput) {
+    
+    var potentialMovies = [];
+    var potentialId = [];
+    var encoded = encodeURI(userInput);
+    var movieUrl = "https://api.themoviedb.org/3/search/movie?api_key=e57e846268be194f276bcd176242c9a4&query=" + encoded;
+   
+    $.ajax({
+        url: movieUrl,
+        method: "GET"
+    }).then(function (data) {
+            console.log("id" , data.results[0].id);
+            for (let i = 0; i < data.results.length; i++) {
+                potentialMovies.push(data.results[i].original_title);
+                potentialId.push(data.results[i].id);
+            }
+            console.log(potentialMovies);
+            console.log(potentialId);
+        }
+   )}
+
+
+$("#movieBtn").on("click", function(event){
+    event.preventDefault();
+    //grabbing user input
+    var movieInput = $("#mySearch").val();
+    //var textContent = $(this).siblings("#mySearch").val();
+    $(".movieOne").empty();
+    movieSearch(movieInput);
+});
 
 
 
@@ -107,42 +148,41 @@ $("#movieBtn").on("click", function(event){
 });
 
 
-function movieSearch (moviename){
-    var movieApi = queryURL + moviename + queryKey;
+// function movieSearch (moviename){
+//     var movieApi = queryURL + moviename + queryKey;
 
 
-    $.ajax({
-        url: movieApi,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
+//     $.ajax({
+//         url: movieApi,
+//         method: "GET"
+//     }).then(function (response) {
+//         console.log(response);
 
-    $(".movieOne").empty();
+//     $(".movieOne").empty();
     
 
-//Possible values we may want from this call
-//Rated, Poster, Title, Year, imdbRating, Genre
-var movieTitle = $("<h2>").text(response.Title);
-console.log(response.Title);
-var movieYear = $("<p>").text(response.Year);
-console.log(response.Year);
-var criticRating = $("<p>").text(response.Ratings[0].Value);
-console.log(response.Ratings[0].Value);
-var movieGenre = $("<p>").text(response.Genre);
-console.log(response.Genre);
-var movieRating = $("<p>").text(response.Rated);
-console.log(response.Rated);
+// //Possible values we may want from this call
+// //Rated, Poster, Title, Year, imdbRating, Genre
+// var movieTitle = $("<h2>").text(response.Title);
+// console.log(response.Title);
+// var movieYear = $("<p>").text(response.Year);
+// console.log(response.Year);
+// var criticRating = $("<p>").text(response.Ratings[0].Value);
+// console.log(response.Ratings[0].Value);
+// var movieGenre = $("<p>").text(response.Genre);
+// console.log(response.Genre);
+// var movieRating = $("<p>").text(response.Rated);
+// console.log(response.Rated);
 
 
-var displayMovie = $("<div>");
-//appending all to div I created
-displayMovie.append(movieTitle, movieYear, movieGenre, movieRating, criticRating);
-//targeting html element
-$(".movieOne").html(displayMovie);
+// var displayMovie = $("<div>");
+// //appending all to div I created
+// displayMovie.append(movieTitle, movieYear, movieGenre, movieRating, criticRating);
+// //targeting html element
+// $(".movieOne").html(displayMovie);
 
-})
-}
-
+// })
+// }
 
 //hiding modal upon X button click. working
 $(".hide").on("click", function(){
@@ -150,12 +190,20 @@ $(".hide").on("click", function(){
 })
 
 
+function nytReview (userInput){
+    var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + userInput + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
 
 
+    $.ajax({
+        url: nyReview,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
 
+})
+}
 
-
-
+nytReview("inception");
 
 
 
