@@ -21,7 +21,22 @@ var queryKey = "&apikey=21754fe3"
 
 
 //Daniel's Lines //////////////////////////////////////////////////////////////
+function tmdb() {
+    var apiKey = "e57e846268be194f276bcd176242c9a4";
+    var user_input = 'Horror';
+    // var movieUrl = "https://api.themoviedb.org/3/movie/464052?api_key=" + apiKey + "&language=en-US";
+    // var movieUrl = "https://api.themoviedb.org/3/genre/movie?api_key=e57e846268be194f276bcd176242c9a4&language=en-US&query=" + user_input +"&page=1&include_adult=false"
+    var movieUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=e57e846268be194f276bcd176242c9a4&language=en-US"
+    $.ajax({
+        url: movieUrl,
+        method: "GET"
+    }).then(function (data) {
+        console.log(data);
+    })
+    
+}
 
+tmdb();
 
 
 
@@ -109,8 +124,8 @@ var movieTitle = $("<h2>").text(response.Title);
 console.log(response.Title);
 var movieYear = $("<p>").text(response.Year);
 console.log(response.Year);
-var criticRating = $("<p>").text(response.Ratings[1]);
-console.log(criticRating);
+var criticRating = $("<p>").text(response.Ratings[0].Value);
+console.log(response.Ratings[0].Value);
 var movieGenre = $("<p>").text(response.Genre);
 console.log(response.Genre);
 var movieRating = $("<p>").text(response.Rated);
@@ -125,6 +140,8 @@ $(".movieOne").html(displayMovie);
 
 })
 }
+
+
 //hiding modal upon X button click. working
 $(".hide").on("click", function(){
     $("#id01").hide();
