@@ -87,7 +87,7 @@ $("#movieBtn").on("click", function(event){
     //grabbing user input
     var movieInput = $("#mySearch").val();
     //var textContent = $(this).siblings("#mySearch").val();
-    
+    $(".movieOne").empty();
     movieSearch(movieInput);
 });
 
@@ -99,14 +99,36 @@ function movieSearch (moviename){
         method: "GET"
     }).then(function(response){
         console.log(response);
-    })
+
+    $(".movieOne").empty();
+    
+
+//Possible values we may want from this call
+//Rated, Poster, Title, Year, imdbRating, Genre
+var movieTitle = $("<h2>").text(response.Title);
+console.log(response.Title);
+var movieYear = $("<p>").text(response.Year);
+console.log(response.Year);
+var criticRating = $("<p>").text(response.Ratings[1]);
+console.log(criticRating);
+var movieGenre = $("<p>").text(response.Genre);
+console.log(response.Genre);
+var movieRating = $("<p>").text(response.Rated);
+console.log(response.Rated);
+
+
+var displayMovie = $("<div>");
+//appending all to div I created
+displayMovie.append(movieTitle, movieYear, movieGenre, movieRating, criticRating);
+//targeting html element
+$(".movieOne").html(displayMovie);
+
+})
 }
-
-
-
-
-
-
+//hiding modal upon X button click. working
+$(".hide").on("click", function(){
+    $("#id01").hide();
+})
 
 
 
