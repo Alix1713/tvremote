@@ -16,15 +16,27 @@
 
 
 
+var queryURL = "http://www.omdbapi.com/?t="
+var queryKey = "&apikey=21754fe3"
 
-
-
-var key = "?api_key=e541cc912b23e446603ad63761519a5e";
-var movieUrl = "https://api.themoviedb.org/3/search/";
-moviename = "inception";
 
 //Daniel's Lines //////////////////////////////////////////////////////////////
+function tmdb() {
+    var apiKey = "e57e846268be194f276bcd176242c9a4";
+    var user_input = 'Horror';
+    // var movieUrl = "https://api.themoviedb.org/3/movie/464052?api_key=" + apiKey + "&language=en-US";
+    // var movieUrl = "https://api.themoviedb.org/3/genre/movie?api_key=e57e846268be194f276bcd176242c9a4&language=en-US&query=" + user_input +"&page=1&include_adult=false"
+    var movieUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=e57e846268be194f276bcd176242c9a4&language=en-US"
+    $.ajax({
+        url: movieUrl,
+        method: "GET"
+    }).then(function (data) {
+        console.log(data);
+    })
+    
+}
 
+tmdb();
 
 
 
@@ -85,23 +97,57 @@ moviename = "inception";
 //////////////////////////////////////////////////////////////////////////////////
 
 //Derek's Lines /////////////////////////////////////////////////////////////////
+$("#movieBtn").on("click", function(event){
+    event.preventDefault();
+    //grabbing user input
+    var movieInput = $("#mySearch").val();
+    //var textContent = $(this).siblings("#mySearch").val();
+    $(".movieOne").empty();
+    movieSearch(movieInput);
+});
 
-function movieSearch(moviename) {
 
-    var movieApi = movieUrl + moviename + key;
+function movieSearch (moviename){
+    var movieApi = queryURL + moviename + queryKey;
+
 
     $.ajax({
         url: movieApi,
         method: "GET"
     }).then(function (response) {
         console.log(response);
-    })
+
+    $(".movieOne").empty();
+    
+
+//Possible values we may want from this call
+//Rated, Poster, Title, Year, imdbRating, Genre
+var movieTitle = $("<h2>").text(response.Title);
+console.log(response.Title);
+var movieYear = $("<p>").text(response.Year);
+console.log(response.Year);
+var criticRating = $("<p>").text(response.Ratings[0].Value);
+console.log(response.Ratings[0].Value);
+var movieGenre = $("<p>").text(response.Genre);
+console.log(response.Genre);
+var movieRating = $("<p>").text(response.Rated);
+console.log(response.Rated);
+
+
+var displayMovie = $("<div>");
+//appending all to div I created
+displayMovie.append(movieTitle, movieYear, movieGenre, movieRating, criticRating);
+//targeting html element
+$(".movieOne").html(displayMovie);
+
+})
 }
 
 
-
-
-
+//hiding modal upon X button click. working
+$(".hide").on("click", function(){
+    $("#id01").hide();
+})
 
 
 
