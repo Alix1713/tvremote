@@ -1,7 +1,7 @@
 // PSEUDOCODE AREA: //
 //take an input value and store value (title names, genre, year)
 //make an api call based on user input 
-
+var twitterKey = "YmkJyoGYpwbFNoXb1N9EP5PRy";
 
 
 
@@ -29,7 +29,8 @@ var apiKey = "e57e846268be194f276bcd176242c9a4";
 // and adds the two values to two separate lists
 function genreGenerator() {
     // var movieUrl = "https://api.themoviedb.org/3/movie/464052?api_key=" + apiKey + "&language=en-US"; // specific example using movie id 
-    var movieUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=e57e846268be194f276bcd176242c9a4&language=en-US" // list of all genres that they offer 
+    var movieUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=e57e846268be194f276bcd176242c9a4&language=en-US" // list of all genres that they offer
+
     $.ajax({
         url: movieUrl,
         method: "GET"
@@ -183,19 +184,26 @@ $("#movieBtn").on("click", function(event){
 // })
 // }
 
-
 //hiding modal upon X button click. working
 $(".hide").on("click", function(){
     $("#id01").hide();
 })
 
 
+function nytReview (userInput){
+    var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + userInput + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
 
 
+    $.ajax({
+        url: nyReview,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
 
+})
+}
 
-
-
+nytReview("inception");
 
 
 
