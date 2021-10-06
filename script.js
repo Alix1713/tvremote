@@ -55,6 +55,7 @@ genreGenerator();
 // not recommendations but just making sure the user is selecting the 
 // right movie because there are many movies with many titles
 function movieSearch(userInput) {
+
     // this resets the list everytime we do a search
     potentialMovies = []; // list of movies that the user may be trying to select
     potentialIds = []; // list of correlating ID movie codes that the user may be trying to select
@@ -89,7 +90,7 @@ var rating = false; // click or not clicked
 function recommend(movieId) {
     var movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "/recommendations?api_key=" + apiKey + "&language=en-US&page=1"
     recommendList = [];
-
+  
     $.ajax({
         url: movieUrl,
         method: "GET"
@@ -191,37 +192,53 @@ $("#movieBtn").on("click", function(event){
 //     var movieApi = queryURL + moviename + queryKey;
 
 
-//     $.ajax({
-//         url: movieApi,
-//         method: "GET"
-//     }).then(function (response) {
-//         console.log(response);
-
-//     $(".movieOne").empty();
-    
-
-// //Possible values we may want from this call
-// //Rated, Poster, Title, Year, imdbRating, Genre
-// var movieTitle = $("<h2>").text(response.Title);
-// console.log(response.Title);
-// var movieYear = $("<p>").text(response.Year);
-// console.log(response.Year);
-// var criticRating = $("<p>").text(response.Ratings[0].Value);
-// console.log(response.Ratings[0].Value);
-// var movieGenre = $("<p>").text(response.Genre);
-// console.log(response.Genre);
-// var movieRating = $("<p>").text(response.Rated);
-// console.log(response.Rated);
 
 
-// var displayMovie = $("<div>");
-// //appending all to div I created
-// displayMovie.append(movieTitle, movieYear, movieGenre, movieRating, criticRating);
-// //targeting html element
-// $(".movieOne").html(displayMovie);
+function trendingMovies (){
+    var movieApi = "https://api.themoviedb.org/3/trending/movie/week?api_key=e57e846268be194f276bcd176242c9a4&query=";
+    //var topThree = [];
 
-// })
-// }
+    $.ajax({
+        url: movieApi,
+        method: "GET"
+    }).then(function (response) {
+    // console.log(response.results[0]);
+    // console.log(response.results[1]);
+    // console.log(response.results[2]);
+    // console.log(response.results[0].backdrop_path)
+    // console.log(response.results[1].backdrop_path)
+    // console.log(response.results[2].backdrop_path)
+
+        var trendingZero = $("<h1>").text(response.results[0].title)
+        //console.log(trendingZero)
+        var trendingOne = $("<h1>").text(response.results[1].title)
+        //console.log(trendingOne)
+        var trendingTwo = $("<h1>").text(response.results[2].title)
+
+        var movieZeroPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[0].backdrop_path);
+        movieZeroPoster.attr("style", "height: 300px")
+
+        var movieOnePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[1].backdrop_path);
+        movieOnePoster.attr("style", "height: 300px")
+
+        var movieTwoPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[2].backdrop_path);
+        movieTwoPoster.attr("style", "height: 300px")
+        
+        var displayMovieZero = $("<div>")
+        displayMovieZero.append(trendingZero, movieZeroPoster);
+        $(".movieOne").html(displayMovieZero, movieZeroPoster);
+
+       var displayMovieOne = $("<div>")
+       displayMovieOne.append(trendingOne, movieOnePoster);
+       $(".movieTwo").html(displayMovieOne, movieOnePoster);
+
+       var displayMovieTwo = $("<div>")
+       displayMovieTwo.append(trendingTwo, movieTwoPoster);
+       $(".movieThree").html(displayMovieTwo, movieTwoPoster);
+     
+})
+};
+trendingMovies();
 
 //hiding modal upon X button click. working
 $(".hide").on("click", function(){
