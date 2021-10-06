@@ -23,9 +23,11 @@
     height: 300px;
     }
     #trending {
-      padding-top: 110px;
-      font-size: 4vw;
+      font-family: 'Staatliches';
+      padding-top: 115px;
+      font-size: 70px;
       color: black;
+      text-shadow: 2px 2px #ff0000;
     }
     
     img {
