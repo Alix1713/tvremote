@@ -138,51 +138,47 @@ $("#movieBtn").on("click", function(event){
 //////////////////////////////////////////////////////////////////////////////////
 
 //Derek's Lines /////////////////////////////////////////////////////////////////
-$("#movieBtn").on("click", function(event){
-    event.preventDefault();
-    //grabbing user input
-    var movieInput = $("#mySearch").val();
-    //var textContent = $(this).siblings("#mySearch").val();
-    $(".movieOne").empty();
-    movieSearch(movieInput);
-});
-
-
-// function movieSearch (moviename){
-//     var movieApi = queryURL + moviename + queryKey;
-
-
-//     $.ajax({
-//         url: movieApi,
-//         method: "GET"
-//     }).then(function (response) {
-//         console.log(response);
-
+// $("#movieBtn").on("click", function(event){
+//     event.preventDefault();
+//     //grabbing user input
+//     var movieInput = $("#mySearch").val();
+//     //var textContent = $(this).siblings("#mySearch").val();
 //     $(".movieOne").empty();
-    
-
-// //Possible values we may want from this call
-// //Rated, Poster, Title, Year, imdbRating, Genre
-// var movieTitle = $("<h2>").text(response.Title);
-// console.log(response.Title);
-// var movieYear = $("<p>").text(response.Year);
-// console.log(response.Year);
-// var criticRating = $("<p>").text(response.Ratings[0].Value);
-// console.log(response.Ratings[0].Value);
-// var movieGenre = $("<p>").text(response.Genre);
-// console.log(response.Genre);
-// var movieRating = $("<p>").text(response.Rated);
-// console.log(response.Rated);
+//     movieSearch(movieInput);
+// });
 
 
-// var displayMovie = $("<div>");
-// //appending all to div I created
-// displayMovie.append(movieTitle, movieYear, movieGenre, movieRating, criticRating);
-// //targeting html element
-// $(".movieOne").html(displayMovie);
+function movieSearch (){
+    var movieApi = "https://api.themoviedb.org/3/trending/movie/week?api_key=e57e846268be194f276bcd176242c9a4&query=";
+    //var topThree = [];
 
-// })
-// }
+    $.ajax({
+        url: movieApi,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response.results[0]);
+        console.log(response.results[1]);
+        console.log(response.results[2]);
+
+        var trendingZero = $("<h2>").text(response.results[0].title)
+        //console.log(trendingZero)
+        var trendingOne = $("<h2>").text(response.results[1].title)
+        //console.log(trendingOne)
+        var trendingTwo = $("<h2>").text(response.results[2].title)
+
+        trendingOnePic = $("<img>").attr(response.results[0].backdrop_path)
+        console.log(trendingOnePic)
+
+        $("#movieOne").append(trendingZero);
+})
+}
+movieSearch();
+
+
+
+
+
+
 
 //hiding modal upon X button click. working
 $(".hide").on("click", function(){
