@@ -43,7 +43,7 @@ function genreGenerator() {
         }
 
     })
-    
+
 }
 genreGenerator();
 
@@ -51,29 +51,30 @@ genreGenerator();
 // not recommendations but just making sure the user is selecting the 
 // right movie because there are many movies with many titles
 function movieSearch(userInput) {
-    
+
     var potentialMovies = []; // list of movies that the user may be trying to select
     var potentialId = []; // list of correlating ID movie codes that the user may be trying to select
     var encoded = encodeURI(userInput);
     var movieUrl = "https://api.themoviedb.org/3/search/movie?api_key=e57e846268be194f276bcd176242c9a4&query=" + encoded;
-   
+
     $.ajax({
         url: movieUrl,
         method: "GET"
     }).then(function (data) {
-            console.log("id" , data.results[0].id);
-            for (let i = 0; i < data.results.length; i++) {
-                potentialMovies.push(data.results[i].original_title);
-                potentialId.push(data.results[i].id);
-            }
-            console.log(potentialMovies);
-            console.log(potentialId);
+        console.log("id", data.results[0].id);
+        for (let i = 0; i < data.results.length; i++) {
+            potentialMovies.push(data.results[i].original_title);
+            potentialId.push(data.results[i].id);
         }
-   )}
+        console.log(potentialMovies);
+        console.log(potentialId);
+    }
+    )
+}
 
 
 // button press that will activate the search 
-$("#movieBtn").on("click", function(event){
+$("#movieBtn").on("click", function (event) {
     event.preventDefault();
     //grabbing user input
     var movieInput = $("#mySearch").val();
@@ -151,7 +152,7 @@ $("#movieBtn").on("click", function(event){
 // });
 
 
-function trendingMovies (){
+function trendingMovies() {
     var movieApi = "https://api.themoviedb.org/3/trending/movie/week?api_key=e57e846268be194f276bcd176242c9a4&query=";
     //var topThree = [];
 
@@ -159,12 +160,12 @@ function trendingMovies (){
         url: movieApi,
         method: "GET"
     }).then(function (response) {
-    // console.log(response.results[0]);
-    // console.log(response.results[1]);
-    // console.log(response.results[2]);
-    // console.log(response.results[0].backdrop_path)
-    // console.log(response.results[1].backdrop_path)
-    // console.log(response.results[2].backdrop_path)
+        // console.log(response.results[0]);
+        // console.log(response.results[1]);
+        // console.log(response.results[2]);
+        // console.log(response.results[0].backdrop_path)
+        // console.log(response.results[1].backdrop_path)
+        // console.log(response.results[2].backdrop_path)
 
         var trendingZero = $("<h1>").text(response.results[0].title)
         //console.log(trendingZero)
@@ -180,30 +181,30 @@ function trendingMovies (){
 
         var movieTwoPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[2].backdrop_path);
         movieTwoPoster.attr("style", "height: 300px")
-        
+
         var displayMovieZero = $("<div>")
         displayMovieZero.append(trendingZero, movieZeroPoster);
         $(".movieOne").html(displayMovieZero, movieZeroPoster);
 
-       var displayMovieOne = $("<div>")
-       displayMovieOne.append(trendingOne, movieOnePoster);
-       $(".movieTwo").html(displayMovieOne, movieOnePoster);
+        var displayMovieOne = $("<div>")
+        displayMovieOne.append(trendingOne, movieOnePoster);
+        $(".movieTwo").html(displayMovieOne, movieOnePoster);
 
-       var displayMovieTwo = $("<div>")
-       displayMovieTwo.append(trendingTwo, movieTwoPoster);
-       $(".movieThree").html(displayMovieTwo, movieTwoPoster);
-     
-})
+        var displayMovieTwo = $("<div>")
+        displayMovieTwo.append(trendingTwo, movieTwoPoster);
+        $(".movieThree").html(displayMovieTwo, movieTwoPoster);
+
+    })
 };
 trendingMovies();
 
 //hiding modal upon X button click. working
-$(".hide").on("click", function(){
+$(".hide").on("click", function () {
     $("#id01").hide();
 })
 
 
-function nytReview (userInput){
+function nytReview(userInput) {
     var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + userInput + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
 
 
@@ -213,7 +214,7 @@ function nytReview (userInput){
     }).then(function (response) {
         console.log(response);
 
-})
+    })
 }
 
 nytReview("inception");
