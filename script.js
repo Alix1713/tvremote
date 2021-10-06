@@ -159,26 +159,40 @@ function movieSearch (){
         console.log(response.results[0]);
         console.log(response.results[1]);
         console.log(response.results[2]);
+        console.log(response.results[0].backdrop_path)
+        console.log(response.results[1].backdrop_path)
+        console.log(response.results[2].backdrop_path)
 
-        var trendingZero = $("<h2>").text(response.results[0].title)
+        var trendingZero = $("<h1>").text(response.results[0].title)
         //console.log(trendingZero)
-        var trendingOne = $("<h2>").text(response.results[1].title)
+        var trendingOne = $("<h1>").text(response.results[1].title)
         //console.log(trendingOne)
-        var trendingTwo = $("<h2>").text(response.results[2].title)
+        var trendingTwo = $("<h1>").text(response.results[2].title)
 
-        trendingOnePic = $("<img>").attr(response.results[0].backdrop_path)
-        console.log(trendingOnePic)
+        var movieZeroPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg");
+        movieZeroPoster.attr("style", "height: 300px")
 
-        $("#movieOne").append(trendingZero);
+        var movieOnePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500//t9nyF3r0WAlJ7Kr6xcRYI4jr9jm.jpg");
+        movieOnePoster.attr("style", "height: 300px")
+
+        var movieTwoPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500//5wPWgTvdoVKW6ICeEAg86IBJOBW.jpg");
+        movieTwoPoster.attr("style", "height: 300px")
+        
+        var displayMovieZero = $("<div>")
+        displayMovieZero.append(trendingZero, movieZeroPoster);
+        $(".movieOne").html(displayMovieZero, movieZeroPoster);
+
+       var displayMovieOne = $("<div>")
+       displayMovieOne.append(trendingOne, movieOnePoster);
+       $(".movieTwo").html(displayMovieOne, movieOnePoster);
+
+       var displayMovieTwo = $("<div>")
+       displayMovieTwo.append(trendingTwo, movieTwoPoster);
+       $(".movieThree").html(displayMovieTwo, movieTwoPoster);
+     
 })
 }
 movieSearch();
-
-
-
-
-
-
 
 //hiding modal upon X button click. working
 $(".hide").on("click", function(){
