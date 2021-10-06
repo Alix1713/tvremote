@@ -41,13 +41,13 @@ function genreGenerator() {
         method: "GET"
     }).then(function (data) {
         genre = data.genres;
-        console.log(genre);
         for (let i = 0; i < genre.length; i++) {
             genreId.push(genre[i].id);
             genreName.push(genre[i].name);
         }
     })
 }
+console.log(genre);
 genreGenerator();
 
 
@@ -72,8 +72,10 @@ function movieSearch(userInput) {
                 potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
                 movieDates.push(data.results[i].release_date); // the release date for all the money
             }
-            console.log(potentialIds);
-            console.log(movieDates);
+            console.log(potentialIds.length);
+            console.log(movieDates.length);
+            console.log(potentialMovies.length)
+
             recommend(potentialIds[0]); // should not be called in here only  putting it in here to test; but this should only 
                                         // be used when clicking on the correct button 
     }
@@ -97,9 +99,9 @@ function recommend(movieId) {
         for (let i = 0; i < data.results.length; i++) {
             var list = data.results[i].genre_ids;
             var idx = genreName.indexOf(genreInput);    //gets the index of the genre input in the name array
-            console.log(data.results[0])
             if (list.includes(genreId[idx])) {          //checks if the input value for the genreInput
-                recommendList.push(data.results[i].id) //appends to reccomendList if the movie has the same genre as the userinput
+                recommendList.push(data.results[i].id)
+                return recommendList; //appends to reccomendList if the movie has the same genre as the userinput
                 console.log(recommendList);
             }
             }
