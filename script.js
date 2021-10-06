@@ -203,9 +203,8 @@ $(".hide").on("click", function(){
 })
 
 
-function nytReview (userInput){
-    var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + userInput + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
-
+function nytReview (review){
+    var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + review + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
 
     $.ajax({
         url: nyReview,
@@ -215,9 +214,7 @@ function nytReview (userInput){
 
 })
 }
-
 nytReview("inception");
-
 
 
 
