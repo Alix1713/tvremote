@@ -45,13 +45,15 @@ function genreGenerator() {
     })
     
 }
-
 genreGenerator();
 
+// this function returns a list of movies based on the user input
+// not recommendations but just making sure the user is selecting the 
+// right movie because there are many movies with many titles
 function movieSearch(userInput) {
     
-    var potentialMovies = [];
-    var potentialId = [];
+    var potentialMovies = []; // list of movies that the user may be trying to select
+    var potentialId = []; // list of correlating ID movie codes that the user may be trying to select
     var encoded = encodeURI(userInput);
     var movieUrl = "https://api.themoviedb.org/3/search/movie?api_key=e57e846268be194f276bcd176242c9a4&query=" + encoded;
    
@@ -70,6 +72,7 @@ function movieSearch(userInput) {
    )}
 
 
+// button press that will activate the search 
 $("#movieBtn").on("click", function(event){
     event.preventDefault();
     //grabbing user input
