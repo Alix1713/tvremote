@@ -151,7 +151,7 @@ $("#movieBtn").on("click", function(event){
 // });
 
 
-function movieSearch (){
+function trendingMovies (){
     var movieApi = "https://api.themoviedb.org/3/trending/movie/week?api_key=e57e846268be194f276bcd176242c9a4&query=";
     //var topThree = [];
 
@@ -159,12 +159,12 @@ function movieSearch (){
         url: movieApi,
         method: "GET"
     }).then(function (response) {
-       // console.log(response.results[0]);
-       // console.log(response.results[1]);
-      //  console.log(response.results[2]);
-       // console.log(response.results[0].backdrop_path)
-       // console.log(response.results[1].backdrop_path)
-      //  console.log(response.results[2].backdrop_path)
+    // console.log(response.results[0]);
+    // console.log(response.results[1]);
+    // console.log(response.results[2]);
+    // console.log(response.results[0].backdrop_path)
+    // console.log(response.results[1].backdrop_path)
+    // console.log(response.results[2].backdrop_path)
 
         var trendingZero = $("<h1>").text(response.results[0].title)
         //console.log(trendingZero)
@@ -194,8 +194,8 @@ function movieSearch (){
        $(".movieThree").html(displayMovieTwo, movieTwoPoster);
      
 })
-}
-movieSearch();
+};
+trendingMovies();
 
 //hiding modal upon X button click. working
 $(".hide").on("click", function(){
