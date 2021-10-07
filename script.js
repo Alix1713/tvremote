@@ -83,14 +83,14 @@ function recommend(movieId) {
         method: "GET"
     }).then(function (data) {
         var randomList = [];
+         $("#recentsearch").empty();
         for (let i = 0; i < 3; i++) {
             var random = randomNum(data.results.length); //choosing a random index within the movies
             if (!data.results.length) {
-                var p = "<p>paragraph 2</p>";
-                $("#modal").append("We do not have any recommendations for this movie!");
+                $("#alertmessage").text("We do not have any recommendations for this movie!");
             } else {
                 var p = "<p>paragraph 1</p>";
-                $("#modal").append("");
+                $("#alertmessage").text("");
             }
             var pick_title = data.results[random].title;   //storing the data of the title, date, overview, and img of the movies
             var pick_date = data.results[random].release_date;
