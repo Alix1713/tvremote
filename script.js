@@ -24,7 +24,7 @@ var apiKey = "e57e846268be194f276bcd176242c9a4";
 var potentialMovies = []; // list of movies that the user may be trying to select
 var potentialIds = []; // list of correlating ID movie codes that the user may be trying to select
 var recommendList = []; //list of recommendations that fit the search criteria 
-var movieDates = [];
+var movieDates = []; //list of movie dates that correlate with the movies 
 
 
 
@@ -41,19 +41,22 @@ function genreGenerator() {
         method: "GET"
     }).then(function (data) {
         genre = data.genres;
-        console.log(genre);
         for (let i = 0; i < genre.length; i++) {
             genreId.push(genre[i].id);
             genreName.push(genre[i].name);
         }
+        console.log(genreId.length);
+        console.log(genreName.length);
     })
 }
+
 genreGenerator();
 
 
 // this function returns a list of movies based on the user input
 // not recommendations but just making sure the user is selecting the 
 // right movie because there are many movies with many titles
+// this function will add movie titles, their ids, and release date to a list
 function movieSearch(userInput) {
 
     // this resets the list everytime we do a search
@@ -75,6 +78,8 @@ function movieSearch(userInput) {
             }
             console.log(potentialIds);
             console.log(movieDates);
+            console.log(potentialMovies);
+
             recommend(potentialIds[0]); // should not be called in here only  putting it in here to test; but this should only 
                                         // be used when clicking on the correct button 
     }
@@ -83,7 +88,7 @@ function movieSearch(userInput) {
 
 var genreInput = "Action"; // will be a drop down selection
 var directorInput = false; // click or not clicked 
-var rating = false; // click or not clicked 
+var toprated = false; // click or not clicked 
 
 //this function recommends movies based on movie ID and parameters
 //appends to a final recommendList (only has the parameters for genre...still need director and rating filter)
@@ -95,18 +100,44 @@ function recommend(movieId) {
         url: movieUrl,
         method: "GET"
     }).then(function (data) {
+        console.log("unfiltered", data.results);  //gets the index of the genre input in the name array
+        var idx = genreName.indexOf(genreInput); 
         for (let i = 0; i < data.results.length; i++) {
             var list = data.results[i].genre_ids;
-            var idx = genreName.indexOf(genreInput);    //gets the index of the genre input in the name array
-            console.log(data.results[0])
-            if (list.includes(genreId[idx])) {          //checks if the input value for the genreInput
-                recommendList.push(data.results[i].id) //appends to reccomendList if the movie has the same genre as the userinput
-                console.log(recommendList);
+            if (list.includes(genreId[idx])) {  //checks if the input value for the genreInput
+                recommendList.push(data.results[i].id);
+                console.log("filtered", recommendList);
+            } else {
+                continue;
             }
             }
+            //this randomly picks movi
+            if (!toprated) {
+            var random_movie = random(recommendList); //appends to reccomendList if the movie has the same genre as the userinput
+                console.log(recommendList[random_movie]);
+                topPicks(recommendList[random_movie])
+            }
+
         })
+    }
+
+//output single movie data based on movie id
+function topPicks(movieId) {
+    var movieUrl ="https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + apiKey + "&language=en-US"
+    $.ajax({
+        url: movieUrl,
+        method: "GET"
+    }).then(function(data) {
+        console.log(data);
+    })
 }
 
+
+
+function random(array) {
+    var length = array.length;
+    return Math.floor(Math.random() * length);
+}
 
 
 // button press that will activate the initial search 
