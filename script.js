@@ -134,7 +134,7 @@ function recommend(movieId) {
             var searchDiv = $("<p>").text(pick_title);
             pastSearch.append(searchDiv);
 
-            $(".w3-center").append(pastSearch);
+            $("#recentsearch").append(pastSearch);
         }
     })
 }
