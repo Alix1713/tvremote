@@ -93,25 +93,45 @@ justify-self: center;
 }
 
 /*popper*/
-body {
+
+.popover {
   background-color:black;
   font-family: -apple-system, Helvetica Neue, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Open Sans, sans-serif;
   text-transform: uppercase;
-  padding: 100px;
+  padding: 50px;
+  
 }
 
-#popcorn {
+#popcorn1 {
   display: inline-block;
   width: 134px;
   height: 120px;
   background-image: url('https://popper.js.org/images/popcorn-box.svg');
+  justify-content:space-between;
+  
+}
+#popcorn2 {
+  display: inline-block;
+  width: 134px;
+  height: 120px;
+  background-image: url('https://popper.js.org/images/popcorn-box.svg');
+  justify-content:space-between;
+  
+}
+#popcorn3 {
+  display: inline-block;
+  width: 134px;
+  height: 120px;
+  background-image: url('https://popper.js.org/images/popcorn-box.svg');
+  justify-content:space-between;
+  
 }
 
 #tooltip {
   display: inline-block;
   background: #ffffff;
-  color: #643045;
+  color: black;
   font-weight: bold;
   padding: 5px 10px;
   font-size: 13px;
