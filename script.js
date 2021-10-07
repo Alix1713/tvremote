@@ -132,14 +132,6 @@ function topPicks(movieId) {
     })
 }
 
-
-
-function random(array) {
-    var length = array.length;
-    return Math.floor(Math.random() * length);
-}
-
-
 // button press that will activate the initial search 
 $("#movieBtn").on("click", function(event){
     event.preventDefault();
