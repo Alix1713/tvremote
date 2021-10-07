@@ -1,36 +1,23 @@
-# Project Title
+# Grab your popcorn!
 
-One paragraph of project description goes here.
 
-## Getting Started
+**What our website does**
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Upon landing on the page, our website shows three trending movies this week in America, and dynamically updates based on the API Call. If next week there are three different trending movies, it will automatically replace those previous movies with the new trending ones.
 
-### Prerequisites
+This application also generates three possible movies that are similar to the one you have searched. For instance, if you searched Marvel’s The Avengers, it might return other Marvel related movies you might like such as Spiderman or Thor.
 
-What things you need to install the software and how to install them.
+Our motivation to building this application was to make movie night easier for everyone, with our application it simplifies that process, by taking movies you have already watched and enjoyed and displaying three possible choices that fill your criteria. Whether from there you flip a coin and decide that way, or you can read the NY Times summary we have provided via the NY Times Movie Reviews API to see if that movie suits you.
 
-```
-Give examples
-```
 
-### Installing
+![Website](popcorn1.gif) 
 
-A step by step series of examples that tell you how to get a development environment running.
 
-Say what the step will be:
+![Website Functionality](popcorn2.gif)
 
-```
-Give the example
-```
 
-And repeat
+![Code Snippet](code1.PNG)
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
 
 
 ## Built With
@@ -38,28 +25,35 @@ End with an example of getting some data out of the system or using it for a lit
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [JQuery](https://jquery.com/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [The Movie Database API](https://developers.themoviedb.org/3)
+* [NY Times API](https://developer.nytimes.com/docs/movie-reviews-api/1/overview)
 
 ## Deployed Link
 
-* [See Live Site](https://alix1713.github.io/tvremote/)
+* [Solve your movie indecisiveness](https://alix1713.github.io/tvremote/)
 
 
 ## Authors
 
-* **YOUR NAME** 
+* **Alix Friedman** 
+* **Daniel Vo** 
+* **Derek Banister** 
 
-- [Link to Portfolio Site](#)
-- [Link to Github](https://github.com/)
-- [Link to LinkedIn](https://www.linkedin.com/)
+## Our LinkedIn's and Github's
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+- [Alix's LinkedIn](https://www.linkedin.com/in/alix1713/)
+- [Daniel's LinkedIn](https://www.linkedin.com/daniel-vo-57b00521b)
+- [Derek's LinkedIn](https://www.linkedin.com/in/derek-banister/)
 
-## License
+- [Alix's GitHub](https://github.com/Alix1713)
+- [Daniel's GitHub](https://github.com/danielvo1)
+- [Derek's Github](https://github.com/DerekBanister)
 
-This project is licensed under the MIT License 
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code, libraries, packages, or UI was used  / inspired from
-* Inspiration
-* etc
+* 
+* 
+* 
