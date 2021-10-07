@@ -89,11 +89,11 @@ function recommend(movieId) {
             var pick_date = data.results[random].release_date;
             var pick_overiew = data.results[random].overview;
             var pick_img = data.results[random].poster_path;
-            pick_date = pick_date.substring(0,4)
+            pick_date = pick_date.substring(0, 4)
 
             // var movie_title = $("<h1>").text(pick_title); //creating h1 tags and p tags dynamically to add to the ticketed screen
             var movie_date = $('<h1>').text(pick_date);
-            
+
             nytReview(pick_title, pick_date); //call to nyt reviews
 
             $("<p>").text(pick_overiew);    //this is the information for the ticket cards 
@@ -101,7 +101,7 @@ function recommend(movieId) {
             var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + pick_img);
             moviePoster.attr("style", "width: auto");
             displayMovie.append(moviePoster, movie_date);
-            
+
             if (i == 0) {                               //this adds the information to the card from left ot right
                 $(".movieOne").html(displayMovie);
             } else if (i == 1) {
@@ -117,7 +117,7 @@ function recommend(movieId) {
 
             $("#recentsearch").append(pastSearch);
 
-            
+
         }
         $("#id01").hide();
     })
@@ -156,71 +156,17 @@ $("#movieBtn").on("click", function (event) {
 
 
 
- function load(){
-     for (i = 0; i < 3; i++){
-         var titles = localStorage.getItem("ourPicks" + i);
-         var titlesDiv = $("<div>");
-         var titlesA = $("<a href=#>").text(titles);
+function load() {
+    for (i = 0; i < 3; i++) {
+        var titles = localStorage.getItem("ourPicks" + i);
+        var titlesDiv = $("<div>");
+        var titlesA = $("<a href=#>").text(titles);
 
-         titlesDiv.append(titlesA);
-         
-         $("#recentsearch").append(titlesDiv);
-     }   
- }
+        titlesDiv.append(titlesA);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        $("#recentsearch").append(titlesDiv);
+    }
+}
 
 
 

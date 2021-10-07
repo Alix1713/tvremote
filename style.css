@@ -1,13 +1,10 @@
 #bg-img
    {
     /* The image used */
-   /* background-image: url("poster.jpg"); */
-  color: rgb(248, 245, 245);
-  background-size: cover;
+   /* background-image: url("poster.jpg"); removed due to styling issues */
+  /*background-size: cover;
     /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 800px;
+  background-color:crimson;
   }
   #moviescroll
      {
