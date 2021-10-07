@@ -7,7 +7,6 @@ var genreId = []; // variable for genre Id
 var apiKey = "e57e846268be194f276bcd176242c9a4";
 var potentialMovies = []; // list of movies that the user may be trying to select
 var potentialIds = []; // list of correlating ID movie codes that the user may be trying to select
-var recommendList = []; //list of recommendations that fit the search criteria 
 var movieDates = []; //list of movie dates that correlate with the movies 
 
 load();
@@ -47,6 +46,7 @@ function movieSearch(userInput) {
     potentialMovies = []; // list of movies that the user may be trying to select
     potentialIds = []; // list of correlating ID movie codes that the user may be trying to select
     movieDates = []; // list of release dates that correspond with the movie
+    $('#selectionList').empty();
 
     var encoded = encodeURI(userInput); //encoded URI this api does not just take strings but only encodedURI
     var movieUrl = "https://api.themoviedb.org/3/search/movie?api_key=e57e846268be194f276bcd176242c9a4&query=" + encoded;
@@ -56,19 +56,22 @@ function movieSearch(userInput) {
         method: "GET"
     }).then(function (data) {
         for (let i = 0; i < data.results.length; i++) {
-            console.log(data.results[i]);
             potentialMovies.push(data.results[i].original_title); //potential movies added to a list
             potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
             movieDates.push(data.results[i].release_date); // the release date for all the money
-        }
-        console.log(potentialIds);
-        console.log(movieDates);
-        console.log(potentialMovies);
+            var movie = $('<li>').text(data.results[i].original_title);
+            var movie_link = $('<a href=#  onclick="return recommend(' + data.results[i].id + ')">').append(movie);
+            $("#selectionList").append(movie_link);
 
-        recommend(potentialIds[0]); // should not be called in here only  putting it in here to test; but this should only 
-        // be used when clicking on the correct button 
+        }
+        // recommend(potentialIds[0]); // should not be called in here only  putting it in here to test; but this should only 
+                                    // be used when clicking on the correct button 
     }
     )
+}
+
+function check() {
+    console.log('hell yeah');
 }
 
 var genreInput = "Action"; // will be a drop down selection
@@ -79,16 +82,16 @@ var toprated = false; // click or not clicked
 //appends to a final recommendList (only has the parameters for genre...still need director and rating filter)
 function recommend(movieId) {
     var movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "/recommendations?api_key=" + apiKey + "&language=en-US&page=1"
-    recommendList = [];
 
     $.ajax({
         url: movieUrl,
         method: "GET"
     }).then(function (data) {
-
+        var randomList = [];
         for (let i = 0; i < 3; i++) {
             var random = randomNum(data.results.length); //choosing a random index within the movies
-            var pick_title = data.results[random].title;
+
+            var pick_title = data.results[random].title;   //storing the data of the title, date, overview, and img of the movies
             var pick_date = data.results[random].release_date;
             var pick_overiew = data.results[random].overview;
             var pick_img = data.results[random].poster_path;
@@ -99,13 +102,13 @@ function recommend(movieId) {
             
             nytReview(pick_title, pick_date); //call to nyt reviews
 
-            $("<p>").text(pick_overiew);
+            $("<p>").text(pick_overiew);    //this is the information for the ticket cards 
             var displayMovie = $("<div>");
             var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + pick_img);
             moviePoster.attr("style", "height: 300px");
             displayMovie.append(movie_title, moviePoster, movie_date);
             
-            if (i == 0) {                               //this adds the information to the card 
+            if (i == 0) {                               //this adds the information to the card from left ot right
                 $(".movieOne").html(displayMovie);
             } else if (i == 1) {
                 $(".movieTwo").html(displayMovie);
@@ -113,7 +116,7 @@ function recommend(movieId) {
                 $(".movieThree").html(displayMovie);
             }
 
-            localStorage.setItem("ourPicks" + i, JSON.stringify(pick_title))
+            localStorage.setItem("ourPicks" + i, JSON.stringify(pick_title)) //sets the items for the search history 
             var pastSearch = $("<div>")
             var searchDiv = $("<a href=#>").text(pick_title);
             pastSearch.append(searchDiv);
@@ -122,6 +125,7 @@ function recommend(movieId) {
 
             
         }
+        $("#id01").hide();
     })
 }
 
@@ -276,9 +280,6 @@ $(".hide").on("click", function () {
     $("#id01").hide();
 })
 
-$("#movieBtn").on("click", function () {
-    $("#id01").hide();
-})
 
 function nytReview(review) {
     var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + review + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
