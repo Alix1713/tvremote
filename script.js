@@ -234,22 +234,3 @@ function nytReview(review) {
 
     })
 }
-
-
-
-function show() {
-    var tooltip = $("#tooltip");
-
-    tooltip.setAttribute('data-show', tooltip);
-    
-    popperInstance.update();
-  }
-  function hide() {
-    tooltip.removeAttribute('data-show');
-  }
-  const showEvents = ['mouseenter', 'focus'];
-  const hideEvents = ['mouseleave', 'blur'];
-  
-
-  show();
-  hide();
