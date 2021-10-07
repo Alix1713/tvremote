@@ -60,7 +60,7 @@ function movieSearch(userInput) {
             potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
             movieDates.push(data.results[i].release_date); // the release date for all the money
             var movie = $('<li>').text(data.results[i].original_title + " " + data.results[i].release_date);
-            var movie_link = $('<a href=#  onclick="return recommend(' + data.results[i].id + ')">').append(movie);
+            var movie_link = $('<a onclick="return recommend(' + data.results[i].id + ')">').append(movie);
             $("#selectionList").append(movie_link);
 
         }
