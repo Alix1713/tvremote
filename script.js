@@ -48,7 +48,7 @@ function movieSearch(userInput) {
     potentialIds = []; // list of correlating ID movie codes that the user may be trying to select
     movieDates = []; // list of release dates that correspond with the movie
 
-    var encoded = encodeURI(userInput);
+    var encoded = encodeURI(userInput); //encoded URI this api does not just take strings but only encodedURI
     var movieUrl = "https://api.themoviedb.org/3/search/movie?api_key=e57e846268be194f276bcd176242c9a4&query=" + encoded;
 
     $.ajax({
@@ -56,7 +56,7 @@ function movieSearch(userInput) {
         method: "GET"
     }).then(function (data) {
         for (let i = 0; i < data.results.length; i++) {
-            console.log(data);
+            console.log(data.results[i]);
             potentialMovies.push(data.results[i].original_title); //potential movies added to a list
             potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
             movieDates.push(data.results[i].release_date); // the release date for all the money
@@ -87,7 +87,7 @@ function recommend(movieId) {
     }).then(function (data) {
 
         for (let i = 0; i < 3; i++) {
-            var random = randomNum(data.results.length); //storing the information for every iteration
+            var random = randomNum(data.results.length); //choosing a random index within the movies
             var pick_title = data.results[random].title;
             var pick_date = data.results[random].release_date;
             var pick_overiew = data.results[random].overview;
@@ -96,23 +96,22 @@ function recommend(movieId) {
 
             var movie_title = $("<h1>").text(pick_title); //creating h1 tags and p tags dynamically to add to the ticketed screen
             var movie_date = $('<p>').text(pick_date);
-            nytReview(pick_title, pick_date);
+            
+            nytReview(pick_title, pick_date); //call to nyt reviews
 
             $("<p>").text(pick_overiew);
             var displayMovie = $("<div>");
             var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + pick_img);
             moviePoster.attr("style", "height: 300px");
-            displayMovie.append(movie_title, movie_date, moviePoster);
-            if (i == 0) {
+            displayMovie.append(movie_title, moviePoster, movie_date);
+            
+            if (i == 0) {                               //this adds the information to the card 
                 $(".movieOne").html(displayMovie);
             } else if (i == 1) {
                 $(".movieTwo").html(displayMovie);
             } else {
                 $(".movieThree").html(displayMovie);
             }
-
-            console.log(data.results[random]);
-            console.log(pick_overiew);
 
             localStorage.setItem("ourPicks" + i, JSON.stringify(pick_title))
             var pastSearch = $("<div>")
