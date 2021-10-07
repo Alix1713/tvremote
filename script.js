@@ -185,36 +185,30 @@ function trendingMovies() {
     }).then(function (response) {
         console.log(response);
 
-        // var trendingZero = $("<h1>").text(response.results[0].title)
-        //console.log(trendingZero)
-        // var trendingOne = $("<h1>").text(response.results[1].title)
-        //console.log(trendingOne)
-        // var trendingTwo = $("<h1>").text(response.results[2].title)
+       for (let i = 0; i < 3; i++){
+        
+        var movieDisplay = $("<div>")
+        var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[i].poster_path)
+        moviePoster.attr("style", "width: auto")
+        movieDisplay.append(moviePoster);
 
-        var movieZeroPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[0].poster_path);
-        // movieZeroPoster.attr("style", "width: auto")
-
-        var movieOnePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[1].poster_path);
-        //movieOnePoster.attr("style", "width: auto")
-
-        var movieTwoPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[2].poster_path);
-        // movieTwoPoster.attr("style", "width: auto")
-
-        var displayMovieZero = $("<div>")
-        displayMovieZero.append(movieZeroPoster);
-        $(".movieOne").html(movieZeroPoster);
-
-        var displayMovieOne = $("<div>")
-        displayMovieOne.append(movieOnePoster);
-        $(".movieTwo").html(movieOnePoster);
-
-        var displayMovieTwo = $("<div>")
-        displayMovieTwo.append(movieTwoPoster);
-        $(".movieThree").html(movieTwoPoster);
-
+            if (i == 0){
+                $(".movieOne").html(movieDisplay)
+            } else if (i == 1){
+                $(".movieTwo").html(movieDisplay)
+            } else {
+                $(".movieThree").html(movieDisplay)
+            }
+        
+        }
     })
 };
 trendingMovies();
+
+
+    
+
+    
 
 //hiding modal upon X button click. working
 $(".hide").on("click", function () {
