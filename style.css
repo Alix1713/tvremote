@@ -7,11 +7,20 @@
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
+    min-height: 800px;
   }
   #moviescroll
      {
     background-image: url("pop1.jpg");
     height: 250px;
+    font-family: 'Righteous';
+    font-size:20px;
+    min-height:300px;
+    }
+
+    h2 {
+      font-size: 40px;
+      font-family: 'Staatliches';
     }
     
     #myHeader {
@@ -70,7 +79,15 @@
 background-image: url("background.jpg");
     }
   
-    #recentsearch{
-
-      
+    #recentsearch {
+      background-color: crimson;
+      color:black;
+      font-family: 'Righteous';
+      font-size: 50px;
     }
+    .movieBtn {
+justify-self: center;
+    }
+.center {
+  padding-left: 50%;
+}
