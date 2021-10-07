@@ -55,6 +55,7 @@ function movieSearch(userInput) {
         url: movieUrl,
         method: "GET"
     }).then(function (data) {
+        console.log(data.results);
         for (let i = 0; i < data.results.length; i++) {
             potentialMovies.push(data.results[i].original_title); //potential movies added to a list
             potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
@@ -84,7 +85,13 @@ function recommend(movieId) {
         var randomList = [];
         for (let i = 0; i < 3; i++) {
             var random = randomNum(data.results.length); //choosing a random index within the movies
-
+            if (!data.results.length) {
+                var p = "<p>paragraph 2</p>";
+                $("#modal").append("We do not have any recommendations for this movie!");
+            } else {
+                var p = "<p>paragraph 1</p>";
+                $("#modal").append("");
+            }
             var pick_title = data.results[random].title;   //storing the data of the title, date, overview, and img of the movies
             var pick_date = data.results[random].release_date;
             var pick_overiew = data.results[random].overview;
