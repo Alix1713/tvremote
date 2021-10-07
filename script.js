@@ -100,26 +100,45 @@ function recommend(movieId) {
         url: movieUrl,
         method: "GET"
     }).then(function (data) {
-        console.log("unfiltered", data.results);  //gets the index of the genre input in the name array
-        var idx = genreName.indexOf(genreInput);
-        for (let i = 0; i < data.results.length; i++) {
-            var list = data.results[i].genre_ids;
-            if (list.includes(genreId[idx])) {  //checks if the input value for the genreInput
-                recommendList.push(data.results[i].id);
-                console.log("filtered", recommendList);
-            } else {
-                continue;
-            }
-        }
-        //this randomly picks movi
-        if (!toprated) {
-            var random_movie = random(recommendList); //appends to reccomendList if the movie has the same genre as the userinput
-            console.log(recommendList[random_movie]);
-            topPicks(recommendList[random_movie])
+
+        for (let i = 0; i < 3; i ++) {
+            var random = randomNum(data.results.length);
+            var pick_title = data.results[random].title;
+            var pick_date = data.results[random].release_date;
+            var pick_overiew = data.results[random].overview;
+            var pick_img = data.results[random].poster_path;
+            
+            var trending = $("<h1>").text(pick_title);
+            nytReview(pick_title, pick_date);
+
+            $("<p>").text(pick_date);
+            $("<p>").text(pick_overiew);
+            var displayMovie = $("<div>");
+            var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + pick_img);
+            moviePoster.attr("style", "height: 300px");
+            displayMovie.append(trending, moviePoster);
+            if (i == 0) {
+            $(".movieOne").html(displayMovie);
+        } else if (i == 1) {
+            $(".movieTwo").html(displayMovie);
+        } else {
+            $(".movieThree").html(displayMovie);
+            break;
         }
 
-    })
-}
+            console.log(data.results[random]);
+            console.log(pick_overiew);
+        }
+        })
+    }
+
+
+
+// random number generator 
+function randomNum(num) {
+    return Math.floor(Math.random() * num)
+};
+
 
 //output single movie data based on movie id
 function topPicks(movieId) {
@@ -141,7 +160,6 @@ $("#movieBtn").on("click", function (event) {
     $(".movieTwo").empty();
     $(".movieThree").empty();
     movieSearch(movieInput);
-    nytReview(movieInput);
 });
 
 
@@ -255,6 +273,9 @@ $(".hide").on("click", function () {
     $("#id01").hide();
 })
 
+$("#movieBtn").on("click", function(){
+    $("#id01").hide();
+})
 
 function nytReview(review) {
     var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + review + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
