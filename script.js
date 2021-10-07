@@ -60,7 +60,7 @@ function movieSearch(userInput) {
             potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
             movieDates.push(data.results[i].release_date); // the release date for all the money
             var movie = $('<li>').text(data.results[i].original_title + " " + data.results[i].release_date);
-            var movie_link = $('<a href=#  onclick="return recommend(' + data.results[i].id + ')">').append(movie);
+            var movie_link = $('<a onclick="return recommend(' + data.results[i].id + ')">').append(movie);
             $("#selectionList").append(movie_link);
 
         }
@@ -237,33 +237,34 @@ function trendingMovies() {
         url: movieApi,
         method: "GET"
     }).then(function (response) {
+        console.log(response);
 
-        var trendingZero = $("<h1>").text(response.results[0].title)
+       // var trendingZero = $("<h1>").text(response.results[0].title)
         //console.log(trendingZero)
-        var trendingOne = $("<h1>").text(response.results[1].title)
+       // var trendingOne = $("<h1>").text(response.results[1].title)
         //console.log(trendingOne)
-        var trendingTwo = $("<h1>").text(response.results[2].title)
+       // var trendingTwo = $("<h1>").text(response.results[2].title)
 
-        var movieZeroPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[0].backdrop_path);
-        movieZeroPoster.attr("style", "height: 300px")
+        var movieZeroPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[0].poster_path);
+       // movieZeroPoster.attr("style", "width: auto")
 
-        var movieOnePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[1].backdrop_path);
-        movieOnePoster.attr("style", "height: 300px")
+        var movieOnePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[1].poster_path);
+        //movieOnePoster.attr("style", "width: auto")
 
-        var movieTwoPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[2].backdrop_path);
-        movieTwoPoster.attr("style", "height: 300px")
+        var movieTwoPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[2].poster_path);
+       // movieTwoPoster.attr("style", "width: auto")
 
         var displayMovieZero = $("<div>")
-        displayMovieZero.append(trendingZero, movieZeroPoster);
-        $(".movieOne").html(displayMovieZero, movieZeroPoster);
+        displayMovieZero.append(movieZeroPoster);
+        $(".movieOne").html(movieZeroPoster);
 
         var displayMovieOne = $("<div>")
-        displayMovieOne.append(trendingOne, movieOnePoster);
-        $(".movieTwo").html(displayMovieOne, movieOnePoster);
+        displayMovieOne.append(movieOnePoster);
+        $(".movieTwo").html(movieOnePoster);
 
         var displayMovieTwo = $("<div>")
-        displayMovieTwo.append(trendingTwo, movieTwoPoster);
-        $(".movieThree").html(displayMovieTwo, movieTwoPoster);
+        displayMovieTwo.append(movieTwoPoster);
+        $(".movieThree").html(movieTwoPoster);
 
     })
 };
