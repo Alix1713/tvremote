@@ -55,7 +55,6 @@ function movieSearch(userInput) {
         url: movieUrl,
         method: "GET",
     }).then(function (data) {
-        console.log(data.results);
          if (data.results == 0) {
                 $("#alertmessage").text("Invalid Movie! Try again!");
             } else {
