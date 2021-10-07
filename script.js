@@ -83,6 +83,7 @@ function recommend(movieId) {
         method: "GET"
     }).then(function (data) {
         var randomList = [];
+         $("#recentsearch").empty();
         for (let i = 0; i < 3; i++) {
             var random = randomNum(data.results.length); //choosing a random index within the movies
             if (!data.results.length) {
