@@ -264,3 +264,10 @@ p {
     --gradY: 0%;
   }
 }
+#tooltip {
+  /* ... */
+  display: none;
+}
+#tooltip[data-show] {
+  display: block;
+}
