@@ -60,14 +60,18 @@ function movieSearch(userInput) {
             potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
             movieDates.push(data.results[i].release_date); // the release date for all the money
             var movie = $('<li>').text(data.results[i].original_title);
-            var movie_link = $('<a href=>').append(movie);
+            var movie_link = $('<a href=#  onclick="return recommend(' + data.results[i].id + ')">').append(movie);
             $("#selectionList").append(movie_link);
 
         }
-        recommend(potentialIds[0]); // should not be called in here only  putting it in here to test; but this should only 
+        // recommend(potentialIds[0]); // should not be called in here only  putting it in here to test; but this should only 
                                     // be used when clicking on the correct button 
     }
     )
+}
+
+function check() {
+    console.log('hell yeah');
 }
 
 var genreInput = "Action"; // will be a drop down selection
@@ -121,6 +125,7 @@ function recommend(movieId) {
 
             
         }
+        $("#id01").hide();
     })
 }
 
@@ -275,9 +280,6 @@ $(".hide").on("click", function () {
     $("#id01").hide();
 })
 
-// $("#movieBtn").on("click", function () {
-//     $("#id01").hide();
-// })
 
 function nytReview(review) {
     var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + review + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
