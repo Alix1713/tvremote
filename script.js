@@ -236,3 +236,32 @@ function nytReview(review) {
 }
 
 
+
+function show() {
+    const popcorn1 = document.querySelector('#popcorn1');
+    const popcorn2 = document.querySelector('#popcorn2');
+    const popcorn3 = document.querySelector('#popcorn3');
+    const tooltip = document.querySelector('#tooltip');
+    tooltip.setAttribute('data-show', tooltip);
+  
+    // We need to tell Popper to update the tooltip position
+    // after we show the tooltip, otherwise it will be incorrect
+    popperInstance.update();
+  }
+  
+  function hide() {
+    tooltip.removeAttribute('data-show');
+  }
+  
+  const showEvents = ['mouseenter', 'focus'];
+  const hideEvents = ['mouseleave', 'blur'];
+  
+  showEvents.forEach((event) => {
+    button.addEventListener(event, show);
+  });
+  
+  hideEvents.forEach((event) => {
+    button.addEventListener(event, hide);
+  });
+
+  show();
