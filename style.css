@@ -11,7 +11,7 @@
   #moviescroll
      {
     background-image: url("pop1.jpg");
-    height: 200px;
+    height: 250px;
     }
     
     #myHeader {
@@ -22,6 +22,7 @@
     background-repeat: no-repeat;
     height: 300px;
     }
+
     #trending {
       font-family: 'Staatliches';
       padding-top: 115px;
@@ -51,4 +52,23 @@
       border: none;
     }
     
+    #foot {
+      background-image: url("pop1.jpg");
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      font-size: 20px;
+    }
+    h3 {
+      padding-left:780px;
+      font-size: 35px;
+      font-weight: 900px;
+      color:black;
+    }
+    h5 {
+      padding-left: 850px;
+      color:black;
+    }
+    
+    #id01{
+background-image: url("background.jpg");
+    }
   

@@ -66,22 +66,22 @@ function movieSearch(userInput) {
 
     var encoded = encodeURI(userInput);
     var movieUrl = "https://api.themoviedb.org/3/search/movie?api_key=e57e846268be194f276bcd176242c9a4&query=" + encoded;
-   
+
     $.ajax({
         url: movieUrl,
         method: "GET"
     }).then(function (data) {
-            for (let i = 0; i < data.results.length; i++) {
-                potentialMovies.push(data.results[i].original_title); //potential movies added to a list
-                potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
-                movieDates.push(data.results[i].release_date); // the release date for all the money
-            }
-            console.log(potentialIds);
-            console.log(movieDates);
-            console.log(potentialMovies);
+        for (let i = 0; i < data.results.length; i++) {
+            potentialMovies.push(data.results[i].original_title); //potential movies added to a list
+            potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
+            movieDates.push(data.results[i].release_date); // the release date for all the money
+        }
+        console.log(potentialIds);
+        console.log(movieDates);
+        console.log(potentialMovies);
 
-            recommend(potentialIds[0]); // should not be called in here only  putting it in here to test; but this should only 
-                                        // be used when clicking on the correct button 
+        recommend(potentialIds[0]); // should not be called in here only  putting it in here to test; but this should only 
+        // be used when clicking on the correct button 
     }
     )
 }
@@ -95,11 +95,12 @@ var toprated = false; // click or not clicked
 function recommend(movieId) {
     var movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "/recommendations?api_key=" + apiKey + "&language=en-US&page=1"
     recommendList = [];
-  
+
     $.ajax({
         url: movieUrl,
         method: "GET"
     }).then(function (data) {
+
         for (let i = 0; i < 3; i ++) {
             var random = randomNum(data.results.length);
             var pick_title = data.results[random].title;
@@ -132,6 +133,7 @@ function recommend(movieId) {
     }
 
 
+
 // random number generator 
 function randomNum(num) {
     return Math.floor(Math.random() * num)
@@ -140,17 +142,17 @@ function randomNum(num) {
 
 //output single movie data based on movie id
 function topPicks(movieId) {
-    var movieUrl ="https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + apiKey + "&language=en-US"
+    var movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + apiKey + "&language=en-US"
     $.ajax({
         url: movieUrl,
         method: "GET"
-    }).then(function(data) {
+    }).then(function (data) {
         console.log(data);
     })
 }
 
 // button press that will activate the initial search 
-$("#movieBtn").on("click", function(event){
+$("#movieBtn").on("click", function (event) {
     event.preventDefault();
     //grabbing user input
     var movieInput = $("#mySearch").val();
@@ -220,7 +222,7 @@ $("#movieBtn").on("click", function(event){
 
 //Derek's Lines /////////////////////////////////////////////////////////////////
 
-function trendingMovies (){
+function trendingMovies() {
     var movieApi = "https://api.themoviedb.org/3/trending/movie/week?api_key=e57e846268be194f276bcd176242c9a4&query=";
     //var topThree = [];
 
@@ -228,12 +230,12 @@ function trendingMovies (){
         url: movieApi,
         method: "GET"
     }).then(function (response) {
-    // console.log(response.results[0]);
-    // console.log(response.results[1]);
-    // console.log(response.results[2]);
-    // console.log(response.results[0].backdrop_path)
-    // console.log(response.results[1].backdrop_path)
-    // console.log(response.results[2].backdrop_path)
+        // console.log(response.results[0]);
+        // console.log(response.results[1]);
+        // console.log(response.results[2]);
+        // console.log(response.results[0].backdrop_path)
+        // console.log(response.results[1].backdrop_path)
+        // console.log(response.results[2].backdrop_path)
 
         var trendingZero = $("<h1>").text(response.results[0].title)
         //console.log(trendingZero)
@@ -249,25 +251,25 @@ function trendingMovies (){
 
         var movieTwoPoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[2].backdrop_path);
         movieTwoPoster.attr("style", "height: 300px")
-        
+
         var displayMovieZero = $("<div>")
         displayMovieZero.append(trendingZero, movieZeroPoster);
         $(".movieOne").html(displayMovieZero, movieZeroPoster);
 
-       var displayMovieOne = $("<div>")
-       displayMovieOne.append(trendingOne, movieOnePoster);
-       $(".movieTwo").html(displayMovieOne, movieOnePoster);
+        var displayMovieOne = $("<div>")
+        displayMovieOne.append(trendingOne, movieOnePoster);
+        $(".movieTwo").html(displayMovieOne, movieOnePoster);
 
-       var displayMovieTwo = $("<div>")
-       displayMovieTwo.append(trendingTwo, movieTwoPoster);
-       $(".movieThree").html(displayMovieTwo, movieTwoPoster);
-     
-})
+        var displayMovieTwo = $("<div>")
+        displayMovieTwo.append(trendingTwo, movieTwoPoster);
+        $(".movieThree").html(displayMovieTwo, movieTwoPoster);
+
+    })
 };
 trendingMovies();
 
 //hiding modal upon X button click. working
-$(".hide").on("click", function(){
+$(".hide").on("click", function () {
     $("#id01").hide();
 })
 
@@ -275,7 +277,7 @@ $("#movieBtn").on("click", function(){
     $("#id01").hide();
 })
 
-function nytReview (review){
+function nytReview(review) {
     var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + review + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
 
     $.ajax({
@@ -284,7 +286,7 @@ function nytReview (review){
     }).then(function (response) {
         console.log(response);
 
-})
+    })
 }
 
 
