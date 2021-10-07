@@ -106,8 +106,10 @@ function recommend(movieId) {
             var pick_date = data.results[random].release_date;
             var pick_overiew = data.results[random].overview;
             var pick_img = data.results[random].poster_path;
-
+            
             var trending = $("<h1>").text(pick_title);
+            nytReview(pick_title, pick_date);
+
             $("<p>").text(pick_date);
             $("<p>").text(pick_overiew);
             var displayMovie = $("<div>");
@@ -156,7 +158,6 @@ $("#movieBtn").on("click", function(event){
     $(".movieTwo").empty();
     $(".movieThree").empty();
     movieSearch(movieInput);
-    nytReview(movieInput);
 });
 
 
@@ -270,6 +271,9 @@ $(".hide").on("click", function(){
     $("#id01").hide();
 })
 
+$("#movieBtn").on("click", function(){
+    $("#id01").hide();
+})
 
 function nytReview (review){
     var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + review + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
