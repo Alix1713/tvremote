@@ -1,19 +1,3 @@
-// PSEUDOCODE AREA: //
-//take an input value and store value (title names, genre, year)
-//make an api call based on user input 
-var twitterKey = "YmkJyoGYpwbFNoXb1N9EP5PRy";
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // var queryURL = "http://www.omdbapi.com/?t="
@@ -26,7 +10,7 @@ var potentialIds = []; // list of correlating ID movie codes that the user may b
 var recommendList = []; //list of recommendations that fit the search criteria 
 var movieDates = []; //list of movie dates that correlate with the movies 
 
-
+load();
 
 //Daniel's Lines //////////////////////////////////////////////////////////////
 
@@ -123,18 +107,19 @@ function recommend(movieId) {
                 $(".movieTwo").html(displayMovie);
             } else {
                 $(".movieThree").html(displayMovie);
-                break;
             }
 
             console.log(data.results[random]);
             console.log(pick_overiew);
 
-            localStorage.setItem("ourPicks", JSON.stringify(pick_title))
+            localStorage.setItem("ourPicks" + i, JSON.stringify(pick_title))
             var pastSearch = $("<div>")
-            var searchDiv = $("<p>").text(pick_title);
+            var searchDiv = $("<a href=#>").text(pick_title);
             pastSearch.append(searchDiv);
 
             $("#recentsearch").append(pastSearch);
+
+            
         }
     })
 }
@@ -166,8 +151,24 @@ $("#movieBtn").on("click", function (event) {
     $(".movieOne").empty();
     $(".movieTwo").empty();
     $(".movieThree").empty();
+    $("#recentsearch").empty();
     movieSearch(movieInput);
 });
+
+
+
+ function load(){
+     for (i = 0; i < 3; i++){
+         var titles = localStorage.getItem("ourPicks" + i);
+         var titlesDiv = $("<div>");
+         var titlesA = $("<a href=#>").text(titles);
+
+         titlesDiv.append(titlesA);
+         
+         $("#recentsearch").append(titlesDiv);
+     }   
+ }
+
 
 
 
