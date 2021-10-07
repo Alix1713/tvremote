@@ -58,7 +58,7 @@
     <!--Gave line 54, 65, 76 class of movieOne to see if I can append generated elements-->
     <div class="w3-row-padding w3-center w3-margin-top">
         <div class="w3-third" id="bg-img">
-            <div class="w3-card w3-container movieOne" style="height:660px">
+            <div class="w3-card w3-container movieOne" style="height:700px">
                 <h3></h3><br>
                 <i class="fa fa-desktop w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
             </div>
@@ -82,6 +82,13 @@
     <div class="w3-center" id="recentsearch">
         <h2>Your recent searches </h2>
     </div>
+    <div class="w3-center" id="popper"></div>
+    <button id="button" aria-describedby="tooltip1">My button</button>
+    <div id="tooltip" role="tooltip1">My tooltip</div>
+    <button id="button" aria-describedby="tooltip2">My button</button>
+    <div id="tooltip" role="tooltip2">My tooltip</div>
+    <button id="button" aria-describedby="tooltip3">My button</button>
+    <div id="tooltip" role="tooltip3">My tooltip</div>
     </div>
 
     <!-- Footer -->
@@ -100,7 +107,7 @@
     <!--run scripts below here-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
-    <script src="popover.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
 </body>
 
 </html>
