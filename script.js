@@ -128,6 +128,13 @@ function recommend(movieId) {
 
             console.log(data.results[random]);
             console.log(pick_overiew);
+
+            localStorage.setItem("ourPicks", JSON.stringify(pick_title))
+            var pastSearch = $("<div>")
+            var searchDiv = $("<p>").text(pick_title);
+            pastSearch.append(searchDiv);
+
+            $(".w3-center").append(pastSearch);
         }
         })
     }
@@ -230,12 +237,6 @@ function trendingMovies() {
         url: movieApi,
         method: "GET"
     }).then(function (response) {
-        // console.log(response.results[0]);
-        // console.log(response.results[1]);
-        // console.log(response.results[2]);
-        // console.log(response.results[0].backdrop_path)
-        // console.log(response.results[1].backdrop_path)
-        // console.log(response.results[2].backdrop_path)
 
         var trendingZero = $("<h1>").text(response.results[0].title)
         //console.log(trendingZero)
