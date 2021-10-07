@@ -59,19 +59,13 @@ function movieSearch(userInput) {
             potentialMovies.push(data.results[i].original_title); //potential movies added to a list
             potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
             movieDates.push(data.results[i].release_date); // the release date for all the money
-            var movie = $('<li>').text(data.results[i].original_title);
+            var movie = $('<li>').text(data.results[i].original_title + " " + data.results[i].release_date);
             var movie_link = $('<a href=#  onclick="return recommend(' + data.results[i].id + ')">').append(movie);
             $("#selectionList").append(movie_link);
 
         }
-        // recommend(potentialIds[0]); // should not be called in here only  putting it in here to test; but this should only 
-                                    // be used when clicking on the correct button 
     }
     )
-}
-
-function check() {
-    console.log('hell yeah');
 }
 
 var genreInput = "Action"; // will be a drop down selection
@@ -97,16 +91,16 @@ function recommend(movieId) {
             var pick_img = data.results[random].poster_path;
             pick_date = pick_date.substring(0,4)
 
-            var movie_title = $("<h1>").text(pick_title); //creating h1 tags and p tags dynamically to add to the ticketed screen
-            var movie_date = $('<p>').text(pick_date);
+            // var movie_title = $("<h1>").text(pick_title); //creating h1 tags and p tags dynamically to add to the ticketed screen
+            var movie_date = $('<h1>').text(pick_date);
             
             nytReview(pick_title, pick_date); //call to nyt reviews
 
             $("<p>").text(pick_overiew);    //this is the information for the ticket cards 
             var displayMovie = $("<div>");
             var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + pick_img);
-            moviePoster.attr("style", "height: 300px");
-            displayMovie.append(movie_title, moviePoster, movie_date);
+            moviePoster.attr("style", "width: auto");
+            displayMovie.append(moviePoster, movie_date);
             
             if (i == 0) {                               //this adds the information to the card from left ot right
                 $(".movieOne").html(displayMovie);
