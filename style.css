@@ -15,21 +15,19 @@
     }
     
     #myHeader {
-        background-image: url("scroll.png");
-        background-color: black;
-        font-family: 'Staatliches';
+        background-image: url("header.png");
     background-position: center;
     background-repeat: no-repeat;
     height: 300px;
     }
 
-    #trending {
-      font-family: 'Staatliches';
-      padding-top: 115px;
-      font-size: 70px;
+   /* #trending {
+      font-family: 'Righteous', cursive;
+      padding-top: 120px;
+      font-size: 58px;
       color: black;
       text-shadow: 2px 2px #ff0000;
-    }
+    }  commented out what I used for the header styling*/
     
     img {
       margin-top: 50px;

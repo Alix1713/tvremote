@@ -101,13 +101,13 @@ function recommend(movieId) {
         method: "GET"
     }).then(function (data) {
 
-        for (let i = 0; i < 3; i ++) {
+        for (let i = 0; i < 3; i++) {
             var random = randomNum(data.results.length);
             var pick_title = data.results[random].title;
             var pick_date = data.results[random].release_date;
             var pick_overiew = data.results[random].overview;
             var pick_img = data.results[random].poster_path;
-            
+
             var trending = $("<h1>").text(pick_title);
             nytReview(pick_title, pick_date);
 
@@ -118,13 +118,13 @@ function recommend(movieId) {
             moviePoster.attr("style", "height: 300px");
             displayMovie.append(trending, moviePoster);
             if (i == 0) {
-            $(".movieOne").html(displayMovie);
-        } else if (i == 1) {
-            $(".movieTwo").html(displayMovie);
-        } else {
-            $(".movieThree").html(displayMovie);
-            break;
-        }
+                $(".movieOne").html(displayMovie);
+            } else if (i == 1) {
+                $(".movieTwo").html(displayMovie);
+            } else {
+                $(".movieThree").html(displayMovie);
+                break;
+            }
 
             console.log(data.results[random]);
             console.log(pick_overiew);
@@ -136,8 +136,8 @@ function recommend(movieId) {
 
             $(".w3-center").append(pastSearch);
         }
-        })
-    }
+    })
+}
 
 
 
@@ -274,7 +274,7 @@ $(".hide").on("click", function () {
     $("#id01").hide();
 })
 
-$("#movieBtn").on("click", function(){
+$("#movieBtn").on("click", function () {
     $("#id01").hide();
 })
 
