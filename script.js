@@ -145,9 +145,11 @@ $("#movieBtn").on("click", function(event){
     event.preventDefault();
     //grabbing user input
     var movieInput = $("#mySearch").val();
-    //var textContent = $(this).siblings("#mySearch").val();
     $(".movieOne").empty();
+    $(".movieTwo").empty();
+    $(".movieThree").empty();
     movieSearch(movieInput);
+    nytReview(movieInput);
 });
 
 
@@ -273,5 +275,5 @@ function nytReview (review){
 
 })
 }
-nytReview("inception");
+
 
