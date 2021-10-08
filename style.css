@@ -133,6 +133,7 @@ justify-self: center;
   padding: 5px 10px;
   font-size: 13px;
   border-radius: 4px;
+  z-index: auto;
 }
 #tooltip2 {
   display: inline-block;
@@ -152,7 +153,6 @@ justify-self: center;
   font-size: 13px;
   border-radius: 4px;
 }
-
 #arrow,
 #arrow::before {
   position: absolute;
@@ -186,9 +186,6 @@ justify-self: center;
 #tooltip[data-popper-placement^='right'] > #arrow {
   left: -4px;
 }
-
-
-/*gradient*/
 
 * {
   box-sizing: border-box;
