@@ -49,6 +49,12 @@ function movieSearch(userInput) {
         method: "GET"
     }).then(function (data) {
         console.log(data.results);
+        if (data.results == 0) {
+            $("#alertmessage").text("Invalid Movie! Try again!");
+        } else {
+            var p = "<p>paragraph 1</p>";
+            $("#alertmessage").text("");
+        }
         for (let i = 0; i < data.results.length; i++) {
             potentialMovies.push(data.results[i].original_title); //potential movies added to a list
             potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
