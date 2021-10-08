@@ -111,7 +111,7 @@ function recommend(movieId) {
             var displayMovie = $("<div>");
             var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + pick_img);
             moviePoster.attr("style", "width: auto");
-            displayMovie.append(moviePoster, movie_date);
+            displayMovie.append(moviePoster);
             var titleDisplay1 = $("<div>")
             titleDisplay1.append(pick_title)
 
@@ -128,7 +128,7 @@ function recommend(movieId) {
             
             localStorage.setItem("ourPicks" + i, JSON.stringify(pick_title)) //sets the items for the search history 
             var pastSearch = $("<div>")
-            var searchDiv = $("<a href=#>").text(pick_title);
+            var searchDiv = $("<a href=#>").text(pick_title + " " + pick_date);
             pastSearch.append(searchDiv);
             $("#recentsearch").append(pastSearch);
         }
