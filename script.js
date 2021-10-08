@@ -210,7 +210,7 @@ function trendingMovies() {
         var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[i].poster_path)
         moviePoster.attr("style", "width: auto")
         movieDisplay.append(moviePoster);
-
+        
             if (i == 0){
                 $(".movieOne").html(movieDisplay)
             } else if (i == 1){
@@ -224,7 +224,7 @@ function trendingMovies() {
             var movieTitle = response.results[i].title;
             titleDisplay.append(movieTitle)
             console.log(movieTitle)
-
+            nytReview(movieTitle);
             if (i == 0){
                 $("#popcorn1").html(titleDisplay)
             } else if (i == 1){
@@ -232,27 +232,10 @@ function trendingMovies() {
             } else {
                 $("#popcorn3").html(titleDisplay)
             }
-        }
-
-        for (let i = 0; i < 3; i++){
-            nytReview(movieTitle);
-            //var review = response.results[0].summary_short;
-            //console.log(review);
-        }
-       
+        }   
     })
 }
 trendingMovies();
-
-
-    
-
-    
-
-//hiding modal upon X button click. working
-$(".hide").on("click", function () {
-    $("#id01").hide();
-})
 
 
 function nytReview(review) {
@@ -262,10 +245,21 @@ function nytReview(review) {
         url: nyReview,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
-        //var review = response.results[0].summary_short;
-        //console.log(review)
+        var review = response.results[0].summary_short;
 
+        for (let i = 0; i < 3; i++){
+            var tooltipDisplay = $("<div>")
+            console.log(review)
+            tooltipDisplay.append(review)
+           // console.log(movieTitle)
+            if (i == 0){
+                $("#tooltip1").html(tooltipDisplay)
+            } else if (i == 1){
+                $("#tooltip2").html(tooltipDisplay)
+            } else {
+                $("#tooltip3").html(tooltipDisplay)
+            }
+        } 
     })
 }
 
@@ -291,3 +285,7 @@ popup3.hide();
 ref3.click(function(){
     popup3.show(); 
 });
+
+$(".hide").on("click", function () {
+    $("#id01").hide();
+})
