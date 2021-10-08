@@ -102,26 +102,33 @@ justify-self: center;
 
 #popcorn1 {
   display: inline-block;
+  margin-left: 450px;
   width: 134px;
   height: 120px;
   background-image: url('https://popper.js.org/images/popcorn-box.svg');
-  justify-content:space-between;
+  align-items: center;
+  justify-content: center;
   
 }
 #popcorn2 {
   display: inline-block;
+  margin-left: 200px;
+  margin-right:200px;
   width: 134px;
   height: 120px;
   background-image: url('https://popper.js.org/images/popcorn-box.svg');
-  justify-content:space-between;
+  align-items: center;
+  justify-content: center;
   
 }
 #popcorn3 {
   display: inline-block;
+  margin-right: 450px;
   width: 134px;
   height: 120px;
   background-image: url('https://popper.js.org/images/popcorn-box.svg');
-  justify-content:space-between;
+  align-items: center;
+  justify-content: center;
   
 }
 
@@ -194,9 +201,6 @@ justify-self: center;
   inherits: true;
 }
 
-p {
-  margin: 0;
-}
 
 :root {
   --d: 2500ms;
@@ -207,26 +211,16 @@ p {
   --c2: rgba(168, 239, 255, 0.1);
 }
 
-.wrapper {
-  min-width: min(40rem, 100%);
-}
 
 .box {
-  font-size: 3vw;
-  margin: max(1rem, 3vw);
-  border: 0.35rem solid;
-  padding: 3vw;
+  border: 1rem solid;
   border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
   animation: borderRotate var(--d) linear infinite forwards;
   font-family: 'Righteous';
   text-align: center;
-  margin: 0;
-  padding: 1rem;
   background-color: rgba(10, 12, 18, 1);
   color: white;
-  min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
