@@ -265,7 +265,6 @@ function nytReview(review, i) {
     })
 }
 
-
 var ref = $('#popcorn1');        
 var popup = $('#tooltip1');
 popup.hide();
@@ -290,3 +289,4 @@ ref3.click(function(){
 $(".hide").on("click", function () {
     $("#id01").hide();
 })
+
