@@ -1,7 +1,4 @@
 
-
-// var queryURL = "http://www.omdbapi.com/?t="
-// var queryKey = "&apikey=21754fe3"
 var genreName = []; // variable for genre name
 var genreId = []; // variable for genre Id
 var apiKey = "e57e846268be194f276bcd176242c9a4";
@@ -10,8 +7,6 @@ var potentialIds = []; // list of correlating ID movie codes that the user may b
 var movieDates = []; //list of movie dates that correlate with the movies 
 
 load();
-
-//Daniel's Lines //////////////////////////////////////////////////////////////
 
 // this function generates all the possible genre name 
 // and adds the two values to two separate lists
@@ -32,9 +27,7 @@ function genreGenerator() {
         console.log(genreName.length);
     })
 }
-
 genreGenerator();
-
 
 // this function returns a list of movies based on the user input
 // not recommendations but just making sure the user is selecting the 
@@ -129,24 +122,9 @@ function recommend(movieId) {
             $("#recentsearch").append(pastSearch);
         }
 
-        // for (let i = 0; i < 3; i++){
-        //     
-        //     
-        //     console.log(pick_title)
-        //     if (i == 0){
-                
-        //     } else if (i == 1){
-                
-        //     } else {
-                
-        //     }
-        // }
-        
         $("#id01").hide();
     })
 }
-
-
 
 // random number generator 
 function randomNum(num) {
@@ -178,7 +156,6 @@ $("#movieBtn").on("click", function (event) {
 });
 
 
-
 function load() {
     for (i = 0; i < 3; i++) {
         var titles = localStorage.getItem("ourPicks" + i);
@@ -190,13 +167,6 @@ function load() {
         $("#recentsearch").append(titlesDiv);
     }
 }
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////
-
-//Derek's Lines /////////////////////////////////////////////////////////////////
 
 function trendingMovies() {
     var movieApi = "https://api.themoviedb.org/3/trending/movie/week?api_key=e57e846268be194f276bcd176242c9a4&query=";
