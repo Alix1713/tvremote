@@ -56,7 +56,7 @@ function movieSearch(userInput) {
             var movie = $('<li>').text(data.results[i].original_title + " " + data.results[i].release_date);
             var movie_link = $('<a onclick="return recommend(' + data.results[i].id + ')">').append(movie);
             $("#selectionList").append(movie_link);
-
+            
         }
     }
     )
@@ -94,8 +94,13 @@ function recommend(movieId) {
             // var movie_title = $("<h1>").text(pick_title); //creating h1 tags and p tags dynamically to add to the ticketed screen
             var movie_date = $('<h1>').text(pick_date);
 
+            $("#tooltip1").text("");
+            $("#tooltip2").text("");
+            $("#tooltip3").text("");
+            
             nytReview(pick_title, i); //call to nyt reviews
-
+           
+        
             $("<p>").text(pick_overiew);    //this is the information for the ticket cards 
             var displayMovie = $("<div>");
             var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + pick_img);
@@ -114,7 +119,7 @@ function recommend(movieId) {
                 $(".movieThree").html(displayMovie);
                 $("#popcorn3").html(titleDisplay1)
             }
-
+            
             localStorage.setItem("ourPicks" + i, JSON.stringify(pick_title)) //sets the items for the search history 
             var pastSearch = $("<div>")
             var searchDiv = $("<a href=#>").text(pick_title);
@@ -220,7 +225,6 @@ function nytReview(review, i) {
     }).then(function (response) {
         var reviewOne = response.results[0].summary_short;
         console.log(reviewOne)
-
             var tooltipDisplay = $("<div>")
             tooltipDisplay.append(reviewOne)
            // console.log(movieTitle)
