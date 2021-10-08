@@ -95,6 +95,8 @@ justify-self: center;
   background-color:black;
   font-family: -apple-system, Helvetica Neue, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Open Sans, sans-serif;
+    font-size:20px;
+    font-weight: bold;
   text-transform: uppercase;
   padding: 50px;
   
@@ -102,10 +104,11 @@ justify-self: center;
 
 #popcorn1 {
   display: inline-block;
-  margin-left: 450px;
+  margin-left: 200px;
   width: 134px;
   height: 120px;
   background-image: url('https://popper.js.org/images/popcorn-box.svg');
+  display:block;
   align-items: center;
   justify-content: center;
   
@@ -113,20 +116,21 @@ justify-self: center;
 #popcorn2 {
   display: inline-block;
   margin-left: 200px;
-  margin-right:200px;
   width: 134px;
   height: 120px;
   background-image: url('https://popper.js.org/images/popcorn-box.svg');
+  display: block;
   align-items: center;
   justify-content: center;
   
 }
 #popcorn3 {
   display: inline-block;
-  margin-right: 450px;
+  margin-left: 200px;
   width: 134px;
   height: 120px;
   background-image: url('https://popper.js.org/images/popcorn-box.svg');
+  display:block;
   align-items: center;
   justify-content: center;
   
@@ -138,7 +142,7 @@ justify-self: center;
   color: black;
   font-weight: bold;
   padding: 5px 10px;
-  font-size: 13px;
+  font-size: 20px;
   border-radius: 4px;
   z-index: auto;
 }
@@ -148,7 +152,7 @@ justify-self: center;
   color: black;
   font-weight: bold;
   padding: 5px 10px;
-  font-size: 13px;
+  font-size: 20px;
   border-radius: 4px;
 }
 #tooltip3 {
@@ -157,7 +161,7 @@ justify-self: center;
   color: black;
   font-weight: bold;
   padding: 5px 10px;
-  font-size: 13px;
+  font-size: 20px;
   border-radius: 4px;
 }
 #arrow,
