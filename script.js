@@ -53,14 +53,9 @@ function movieSearch(userInput) {
 
     $.ajax({
         url: movieUrl,
-        method: "GET",
+        method: "GET"
     }).then(function (data) {
-         if (data.results == 0) {
-                $("#alertmessage").text("Invalid Movie! Try again!");
-            } else {
-                var p = "<p>paragraph 1</p>";
-                $("#alertmessage").text("");
-            }
+        console.log(data.results);
         for (let i = 0; i < data.results.length; i++) {
             potentialMovies.push(data.results[i].original_title); //potential movies added to a list
             potentialIds.push(data.results[i].id);  // potential movies' ID added to a list
@@ -70,7 +65,8 @@ function movieSearch(userInput) {
             $("#selectionList").append(movie_link);
 
         }
-    })
+    }
+    )
 }
 
 var genreInput = "Action"; // will be a drop down selection
@@ -125,11 +121,23 @@ function recommend(movieId) {
             var pastSearch = $("<div>")
             var searchDiv = $("<a href=#>").text(pick_title);
             pastSearch.append(searchDiv);
-
             $("#recentsearch").append(pastSearch);
-
-
         }
+
+        for (let i = 0; i < 3; i++){
+            var titleDisplay1 = $("<div>")
+            titleDisplay1.append(pick_title)
+            console.log(pick_title)
+
+            if (i == 0){
+                $("#popcorn1").html(titleDisplay1)
+            } else if (i == 1){
+                $("#popcorn2").html(titleDisplay1)
+            } else {
+                $("#popcorn3").html(titleDisplay1)
+            }
+        }
+        
         $("#id01").hide();
     })
 }
@@ -197,7 +205,7 @@ function trendingMovies() {
         console.log(response);
 
        for (let i = 0; i < 3; i++){
-        
+
         var movieDisplay = $("<div>")
         var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[i].poster_path)
         moviePoster.attr("style", "width: auto")
@@ -210,10 +218,30 @@ function trendingMovies() {
             } else {
                 $(".movieThree").html(movieDisplay)
             }
-        
         }
+        for (let i = 0; i < 3; i++){
+            var titleDisplay = $("<div>")
+            var movieTitle = response.results[i].title;
+            titleDisplay.append(movieTitle)
+            console.log(movieTitle)
+
+            if (i == 0){
+                $("#popcorn1").html(titleDisplay)
+            } else if (i == 1){
+                $("#popcorn2").html(titleDisplay)
+            } else {
+                $("#popcorn3").html(titleDisplay)
+            }
+        }
+
+        for (let i = 0; i < 3; i++){
+            nytReview(movieTitle);
+            //var review = response.results[0].summary_short;
+            //console.log(review);
+        }
+       
     })
-};
+}
 trendingMovies();
 
 
@@ -235,6 +263,31 @@ function nytReview(review) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
+        //var review = response.results[0].summary_short;
+        //console.log(review)
 
     })
 }
+
+
+
+var ref = $('#popcorn1');        
+var popup = $('#tooltip1');
+popup.hide();
+ref.click(function(){
+    popup.show(); 
+});
+
+var ref2 = $('#popcorn2');        
+var popup2 = $('#tooltip2');
+popup2.hide();
+ref2.click(function(){
+    popup2.show(); 
+});
+
+var ref3 = $('#popcorn3');        
+var popup3 = $('#tooltip3');
+popup3.hide();
+ref3.click(function(){
+    popup3.show(); 
+});

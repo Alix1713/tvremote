@@ -125,7 +125,25 @@ justify-self: center;
   
 }
 
-#tooltip {
+#tooltip1 {
+  display: inline-block;
+  background: #ffffff;
+  color: black;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+#tooltip2 {
+  display: inline-block;
+  background: #ffffff;
+  color: black;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+#tooltip3 {
   display: inline-block;
   background: #ffffff;
   color: black;
@@ -263,11 +281,4 @@ p {
     --gradX: 50%;
     --gradY: 0%;
   }
-}
-#tooltip {
-  /* ... */
-  display: none;
-}
-#tooltip[data-show] {
-  display: block;
 }
