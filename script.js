@@ -101,31 +101,47 @@ function recommend(movieId) {
             // var movie_title = $("<h1>").text(pick_title); //creating h1 tags and p tags dynamically to add to the ticketed screen
             var movie_date = $('<h1>').text(pick_date);
 
-            nytReview(pick_title, pick_date); //call to nyt reviews
+            nytReview(pick_title, i); //call to nyt reviews
 
             $("<p>").text(pick_overiew);    //this is the information for the ticket cards 
             var displayMovie = $("<div>");
             var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + pick_img);
             moviePoster.attr("style", "width: auto");
             displayMovie.append(moviePoster, movie_date);
+            var titleDisplay1 = $("<div>")
+            titleDisplay1.append(pick_title)
 
             if (i == 0) {                               //this adds the information to the card from left ot right
                 $(".movieOne").html(displayMovie);
+                $("#popcorn1").html(titleDisplay1)
             } else if (i == 1) {
                 $(".movieTwo").html(displayMovie);
+                $("#popcorn2").html(titleDisplay1)
             } else {
                 $(".movieThree").html(displayMovie);
+                $("#popcorn3").html(titleDisplay1)
             }
 
             localStorage.setItem("ourPicks" + i, JSON.stringify(pick_title)) //sets the items for the search history 
             var pastSearch = $("<div>")
             var searchDiv = $("<a href=#>").text(pick_title);
             pastSearch.append(searchDiv);
-
             $("#recentsearch").append(pastSearch);
-
-
         }
+
+        // for (let i = 0; i < 3; i++){
+        //     
+        //     
+        //     console.log(pick_title)
+        //     if (i == 0){
+                
+        //     } else if (i == 1){
+                
+        //     } else {
+                
+        //     }
+        // }
+        
         $("#id01").hide();
     })
 }
@@ -193,12 +209,12 @@ function trendingMovies() {
         console.log(response);
 
        for (let i = 0; i < 3; i++){
-        
+
         var movieDisplay = $("<div>")
         var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[i].poster_path)
         moviePoster.attr("style", "width: auto")
         movieDisplay.append(moviePoster);
-
+        
             if (i == 0){
                 $(".movieOne").html(movieDisplay)
             } else if (i == 1){
@@ -206,50 +222,71 @@ function trendingMovies() {
             } else {
                 $(".movieThree").html(movieDisplay)
             }
-        
         }
+        for (let i = 0; i < 3; i++){
+            var titleDisplay = $("<div>")
+            var movieTitle = response.results[i].title;
+            titleDisplay.append(movieTitle)
+            console.log(movieTitle)
+            nytReview(movieTitle, i);
+            if (i == 0){
+                $("#popcorn1").html(titleDisplay)
+            } else if (i == 1){
+                $("#popcorn2").html(titleDisplay)
+            } else {
+                $("#popcorn3").html(titleDisplay)
+            }
+        }   
     })
-};
+}
 trendingMovies();
 
-
-    
-
-    
-
-//hiding modal upon X button click. working
-$(".hide").on("click", function () {
-    $("#id01").hide();
-})
-
-
-function nytReview(review) {
+function nytReview(review, i) {
     var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + review + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
 
     $.ajax({
         url: nyReview,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
+        var reviewOne = response.results[0].summary_short;
+        console.log(reviewOne)
 
+            var tooltipDisplay = $("<div>")
+            tooltipDisplay.append(reviewOne)
+           // console.log(movieTitle)
+            if (i == 0){
+                $("#tooltip1").html(tooltipDisplay)
+            } else if (i == 1){
+                $("#tooltip2").html(tooltipDisplay)
+            } else {
+                $("#tooltip3").html(tooltipDisplay)
+            }
+        
     })
 }
 
+var ref = $('#popcorn1');        
+var popup = $('#tooltip1');
+popup.hide();
+ref.click(function(){
+    popup.show(); 
+});
 
+var ref2 = $('#popcorn2');        
+var popup2 = $('#tooltip2');
+popup2.hide();
+ref2.click(function(){
+    popup2.show(); 
+});
 
-function show() {
-    var tooltip = $("#tooltip");
+var ref3 = $('#popcorn3');        
+var popup3 = $('#tooltip3');
+popup3.hide();
+ref3.click(function(){
+    popup3.show(); 
+});
 
-    tooltip.setAttribute('data-show', tooltip);
-    
-    popperInstance.update();
-  }
-  function hide() {
-    tooltip.removeAttribute('data-show');
-  }
-  const showEvents = ['mouseenter', 'focus'];
-  const hideEvents = ['mouseleave', 'blur'];
-  
+$(".hide").on("click", function () {
+    $("#id01").hide();
+})
 
-  show();
-  hide();

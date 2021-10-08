@@ -132,7 +132,17 @@ justify-self: center;
   
 }
 
-#tooltip {
+#tooltip1 {
+  display: inline-block;
+  background: #ffffff;
+  color: black;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+  z-index: auto;
+}
+#tooltip2 {
   display: inline-block;
   background: #ffffff;
   color: black;
@@ -141,7 +151,15 @@ justify-self: center;
   font-size: 13px;
   border-radius: 4px;
 }
-
+#tooltip3 {
+  display: inline-block;
+  background: #ffffff;
+  color: black;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+}
 #arrow,
 #arrow::before {
   position: absolute;
@@ -175,9 +193,6 @@ justify-self: center;
 #tooltip[data-popper-placement^='right'] > #arrow {
   left: -4px;
 }
-
-
-/*gradient*/
 
 * {
   box-sizing: border-box;
@@ -257,11 +272,4 @@ justify-self: center;
     --gradX: 50%;
     --gradY: 0%;
   }
-}
-#tooltip {
-  /* ... */
-  display: none;
-}
-#tooltip[data-show] {
-  display: block;
 }
