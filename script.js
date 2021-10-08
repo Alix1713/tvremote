@@ -101,20 +101,25 @@ function recommend(movieId) {
             // var movie_title = $("<h1>").text(pick_title); //creating h1 tags and p tags dynamically to add to the ticketed screen
             var movie_date = $('<h1>').text(pick_date);
 
-            nytReview(pick_title, pick_date); //call to nyt reviews
+            nytReview(pick_title, i); //call to nyt reviews
 
             $("<p>").text(pick_overiew);    //this is the information for the ticket cards 
             var displayMovie = $("<div>");
             var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + pick_img);
             moviePoster.attr("style", "width: auto");
             displayMovie.append(moviePoster, movie_date);
+            var titleDisplay1 = $("<div>")
+            titleDisplay1.append(pick_title)
 
             if (i == 0) {                               //this adds the information to the card from left ot right
                 $(".movieOne").html(displayMovie);
+                $("#popcorn1").html(titleDisplay1)
             } else if (i == 1) {
                 $(".movieTwo").html(displayMovie);
+                $("#popcorn2").html(titleDisplay1)
             } else {
                 $(".movieThree").html(displayMovie);
+                $("#popcorn3").html(titleDisplay1)
             }
 
             localStorage.setItem("ourPicks" + i, JSON.stringify(pick_title)) //sets the items for the search history 
@@ -124,19 +129,18 @@ function recommend(movieId) {
             $("#recentsearch").append(pastSearch);
         }
 
-        for (let i = 0; i < 3; i++){
-            var titleDisplay1 = $("<div>")
-            titleDisplay1.append(pick_title)
-            console.log(pick_title)
-
-            if (i == 0){
-                $("#popcorn1").html(titleDisplay1)
-            } else if (i == 1){
-                $("#popcorn2").html(titleDisplay1)
-            } else {
-                $("#popcorn3").html(titleDisplay1)
-            }
-        }
+        // for (let i = 0; i < 3; i++){
+        //     
+        //     
+        //     console.log(pick_title)
+        //     if (i == 0){
+                
+        //     } else if (i == 1){
+                
+        //     } else {
+                
+        //     }
+        // }
         
         $("#id01").hide();
     })
@@ -224,7 +228,7 @@ function trendingMovies() {
             var movieTitle = response.results[i].title;
             titleDisplay.append(movieTitle)
             console.log(movieTitle)
-            nytReview(movieTitle);
+            nytReview(movieTitle, i);
             if (i == 0){
                 $("#popcorn1").html(titleDisplay)
             } else if (i == 1){
@@ -237,20 +241,18 @@ function trendingMovies() {
 }
 trendingMovies();
 
-
-function nytReview(review) {
+function nytReview(review, i) {
     var nyReview = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + review + "&api-key=cfswTPvkAAO6whxPPliiN3Hw0COpKs61"
 
     $.ajax({
         url: nyReview,
         method: "GET"
     }).then(function (response) {
-        var review = response.results[0].summary_short;
+        var reviewOne = response.results[0].summary_short;
+        console.log(reviewOne)
 
-        for (let i = 0; i < 3; i++){
             var tooltipDisplay = $("<div>")
-            console.log(review)
-            tooltipDisplay.append(review)
+            tooltipDisplay.append(reviewOne)
            // console.log(movieTitle)
             if (i == 0){
                 $("#tooltip1").html(tooltipDisplay)
@@ -259,10 +261,9 @@ function nytReview(review) {
             } else {
                 $("#tooltip3").html(tooltipDisplay)
             }
-        } 
+        
     })
 }
-
 
 
 var ref = $('#popcorn1');        
