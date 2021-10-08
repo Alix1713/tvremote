@@ -76,7 +76,7 @@ function recommend(movieId) {
         method: "GET"
     }).then(function (data) {
         var randomList = [];
-         $("#recentsearch").empty();
+        $("#recentsearch").empty();
         for (let i = 0; i < 3; i++) {
             var random = randomNum(data.results.length); //choosing a random index within the movies
             if (!data.results.length) {
@@ -171,35 +171,35 @@ function trendingMovies() {
     }).then(function (response) {
         console.log(response);
 
-       for (let i = 0; i < 3; i++){
+        for (let i = 0; i < 3; i++) {
 
-        var movieDisplay = $("<div>")
-        var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[i].poster_path)
-        moviePoster.attr("style", "width: auto")
-        movieDisplay.append(moviePoster);
-        
-            if (i == 0){
+            var movieDisplay = $("<div>")
+            var moviePoster = $("<img>").attr("src", "https://image.tmdb.org/t/p/w500/" + response.results[i].poster_path)
+            moviePoster.attr("style", "width: auto")
+            movieDisplay.append(moviePoster);
+
+            if (i == 0) {
                 $(".movieOne").html(movieDisplay)
-            } else if (i == 1){
+            } else if (i == 1) {
                 $(".movieTwo").html(movieDisplay)
             } else {
                 $(".movieThree").html(movieDisplay)
             }
         }
-        for (let i = 0; i < 3; i++){
+        for (let i = 0; i < 3; i++) {
             var titleDisplay = $("<div>")
             var movieTitle = response.results[i].title;
             titleDisplay.append(movieTitle)
             console.log(movieTitle)
             nytReview(movieTitle, i);
-            if (i == 0){
+            if (i == 0) {
                 $("#popcorn1").html(titleDisplay)
-            } else if (i == 1){
+            } else if (i == 1) {
                 $("#popcorn2").html(titleDisplay)
             } else {
                 $("#popcorn3").html(titleDisplay)
             }
-        }   
+        }
     })
 }
 trendingMovies();
@@ -213,6 +213,7 @@ function nytReview(review, i) {
     }).then(function (response) {
         var reviewOne = response.results[0].summary_short;
         console.log(reviewOne)
+
             var tooltipDisplay = $("<div>")
             tooltipDisplay.append(reviewOne)
            // console.log(movieTitle)
@@ -227,25 +228,25 @@ function nytReview(review, i) {
     })
 }
 
-var ref = $('#popcorn1');        
+var ref = $('#popcorn1');
 var popup = $('#tooltip1');
 popup.hide();
-ref.click(function(){
-    popup.show(); 
+ref.click(function () {
+    popup.show();
 });
 
-var ref2 = $('#popcorn2');        
+var ref2 = $('#popcorn2');
 var popup2 = $('#tooltip2');
 popup2.hide();
-ref2.click(function(){
-    popup2.show(); 
+ref2.click(function () {
+    popup2.show();
 });
 
-var ref3 = $('#popcorn3');        
+var ref3 = $('#popcorn3');
 var popup3 = $('#tooltip3');
 popup3.hide();
-ref3.click(function(){
-    popup3.show(); 
+ref3.click(function () {
+    popup3.show();
 });
 
 $(".hide").on("click", function () {
