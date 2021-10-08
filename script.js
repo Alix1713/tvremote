@@ -131,18 +131,6 @@ function randomNum(num) {
     return Math.floor(Math.random() * num)
 };
 
-
-//output single movie data based on movie id
-function topPicks(movieId) {
-    var movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + apiKey + "&language=en-US"
-    $.ajax({
-        url: movieUrl,
-        method: "GET"
-    }).then(function (data) {
-        console.log(data);
-    })
-}
-
 // button press that will activate the initial search 
 $("#movieBtn").on("click", function (event) {
     event.preventDefault();
