@@ -10,13 +10,16 @@ This application also generates three possible movies that are similar to the on
 Our motivation to building this application was to make movie night easier for everyone, with our application it simplifies that process, by taking movies you have already watched and enjoyed and displaying three possible choices that fill your criteria. Whether from there you flip a coin and decide that way, or you can read the NY Times summary we have provided via the NY Times Movie Reviews API to see if that movie suits you.
 
 # Website GIF's
-![Website](popcorn1.gif) 
+![Website](images/popcorn1.gif) 
 
 
-![Website Functionality](popcorn2.gif)
+![Website Functionality](images/popcorn2.gif)
 
 # Code Snippet
-![Code Snippet](code1.PNG)
+![Code Snippet](images/code1.PNG)
+
+# Code Snippet
+![Code Snippet](images/trending.PNG)
 
 
 
