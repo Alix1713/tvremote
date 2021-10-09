@@ -8,7 +8,7 @@
   }
   #moviescroll
      {
-    background-image: url("pop1.jpg");
+    background-image: url("images/pop1.jpg");
     height: 250px;
     font-family: 'Righteous';
     font-size:20px;
@@ -21,7 +21,7 @@
     }
     
     #myHeader {
-        background-image: url("header.png");
+        background-image: url("images/header.png");
     background-position: center;
     background-repeat: no-repeat;
     height: 300px;
@@ -57,7 +57,7 @@
     }
     
     #foot {
-      background-image: url("pop1.jpg");
+      background-image: url("images/pop1.jpg");
       font-family:Georgia, 'Times New Roman', Times, serif;
       font-size: 20px;
     }
@@ -73,7 +73,7 @@
     }
     
     #id01{
-background-image: url("background.jpg");
+background-image: url("images/background.jpg");
     }
   
     #recentsearch {
